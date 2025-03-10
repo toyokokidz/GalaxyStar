@@ -1,0 +1,42 @@
+.showcaseSection {
+  margin-top: 40px;
+  
+  img {
+    width: 100%;
+    max-width: 1384px;
+    height: 692px;
+    border-radius: 24px;
+    object-fit: cover;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+.subtitle {
+  color: white;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.title {
+  color: white;
+  font-size: 48px;
+  margin-bottom: 24px;
+}
+
+.button {
+  padding: 12px 24px;
+  background: white;
+  border: none;
+  border-radius: 60px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@media (max-width: 1480px) {
+  .showcaseSection {
+    max-width: 1384px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+} 

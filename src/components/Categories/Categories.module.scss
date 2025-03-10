@@ -1,0 +1,199 @@
+.categoriesSection {
+  padding: 0 24px;
+  margin-bottom: 40px;
+
+  @media (max-width: 1366px) {
+    margin-bottom: 60px;
+  }
+
+  @media (max-width: 1024px) {
+    margin-bottom: 48px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 16px;
+    margin-bottom: 40px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr;
+  grid-template-rows: repeat(2, auto);
+  grid-template-areas: 
+    "keyboard keyboard mouse"
+    "switches keycaps mousepad";
+  gap: 24px;
+  max-width: 1384px;
+  margin: 0 auto;
+}
+
+.category {
+  position: relative;
+  text-decoration: none;
+  display: block;
+  background: #000;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  outline: 1px solid rgba(255, 255, 255, 0.1);
+  outline-offset: 1px;
+
+  &.keyboard {
+    grid-area: keyboard;
+    height: 400px;
+  }
+
+  &.mouse {
+    grid-area: mouse;
+    height: 190px;
+  }
+
+  &.switches {
+    grid-area: switches;
+    height: 190px;
+  }
+
+  &.keycaps {
+    grid-area: keycaps;
+    height: 190px;
+  }
+
+  &.mousepad {
+    grid-area: mousepad;
+    height: 400px;
+    margin-top: -214px;
+  }
+
+  .imageWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  .gradient {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(0, 0, 0, 0.7)
+    );
+    z-index: 2;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+
+  .title {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    font-size: 24px;
+    font-weight: 500;
+    z-index: 3;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 4px 0;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, #5d3fff, #ff52b6);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    outline-color: rgba(255, 255, 255, 0.2);
+
+    .gradient {
+      opacity: 0.6;
+    }
+
+    .title {
+      color: white;
+      
+      &::before {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+
+    .imageWrapper img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+@media (max-width: 1366px) {
+  .grid {
+    max-width: 1270px;
+  }
+}
+
+@media (min-width: 1367px) and (max-width: 1480px) {
+  .grid {
+    max-width: 1384px;
+  }
+
+  .keyboard {
+    height: 504px;
+  }
+
+  .mouse {
+    height: 240px;
+  }
+
+  .switches,
+  .keycaps {
+    height: 240px;
+  }
+
+  .mousepad {
+    height: 504px;
+    margin-top: 264px;
+  }
+}
+
+@media (min-width: 1481px) {
+  .grid {
+    max-width: 1824px;
+  }
+
+  .keyboard {
+    height: 596px;
+  }
+
+  .mouse {
+    height: 282px;
+  }
+
+  .switches,
+  .keycaps {
+    height: 282px;
+  }
+
+  .mousepad {
+    height: 596px;
+    margin-top: 306px;
+  }
+}
+
+.categories {
+  height: calc(100vh - 200px);
+}
