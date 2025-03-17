@@ -17,6 +17,7 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-router-dom": "^7.3.0",
     "sass": "^1.32.8",
     "swiper": "^11.2.5"
   },

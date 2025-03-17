@@ -1,0 +1,164 @@
+.container {
+    max-width: 600px;
+    margin: 150px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    font-size: 24px;
+    line-height: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: black;
+  }
+  
+  .section {
+    margin-bottom: 20px;
+  }
+  
+  .sectionTitle {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: rgba(0, 0, 0, 0.899);
+  }
+  
+  .sectionText {
+    margin-bottom: 10px;
+    color: #666;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  
+  .checkboxLabel {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; 
+    color: black;
+
+  }
+  
+  .checkboxInput {
+    margin-right: 10px;
+  }
+  
+  .paymentSection {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 2px solid #0000003c; 
+    border-radius: 7px; 
+    background-color: #ffffff; 
+    box-shadow: 0 4px 12px rgba(6, 18, 32, 0.089); 
+  }
+  
+  .paymentTitle {
+    font-size: 20px;
+    line-height: 22px;
+    color: #000;
+    margin-bottom: 15px;
+  }
+  
+  .paymentText {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .paymentMethods {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .paymentButton {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #007bff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  
+    &:hover {
+      background-color: #007bff;
+      color: #fff;
+    }
+  }
+  
+  .paymentInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    transition: border-color 0.3s;
+  
+    &:focus {
+      border-color: #161518d8; // Подсветка при фокусе
+      outline: none;
+    }
+  }
+  
+  .paymentCheckboxLabel {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #000;
+  }
+  
+  .paymentCheckboxInput {
+    margin-right: 10px;
+  }
+  
+  .paymentButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .submitButton {
+    width: 100%;
+    padding: 10px;
+    background-color: #2bb44bdf;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .paymentButton.active {
+    background-color: #7005c8;
+    color: #fff;
+  }
+  
+  .paypalSection, .gpaySection {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+  }
+  
+  .paypalSection p, .gpaySection p {
+    font-size: 14px;
+    color: #666;
+  }
