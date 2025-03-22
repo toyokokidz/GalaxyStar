@@ -9,7 +9,6 @@ import Footer from '../components/Footer/Footer'
 export default function Home() {
   return (
     <>
-      <Header />
       <main>
         <Hero />
         <Categories />
@@ -17,7 +16,6 @@ export default function Home() {
         <HandCraftDisplay />
         <AboutSection />
       </main>
-      <Footer />
     </>
   )
 }

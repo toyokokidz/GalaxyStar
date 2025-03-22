@@ -1,0 +1,101 @@
+.contentBlock {
+  text-align: center;
+  width: 600px;
+  max-width: 100%; 
+  margin: 0 auto 40px; 
+}
+
+.fullWidthVideo {
+  width: 100%;
+  height: 400px; 
+  position: relative;
+  margin-bottom: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  background-color: black; 
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.videoText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.flexLine {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+  position: relative; 
+  padding-bottom: 40px; 
+}
+
+.flexLine:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0; 
+  left: 0;
+  width: 100%; 
+  height: 1px; 
+  background-color: rgba(255, 255, 255, 0.1); 
+}
+
+.flexItem {
+  flex: 0.8; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.image {
+  width: 80%; 
+  height: auto;
+  border-radius: 8px;
+}
+
+.secondaryVideo {
+  width: 80%; 
+  height: auto;
+  border-radius: 8px;
+}
+
+.flexItem h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.flexItem p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+  width: 400px;
+}
+
+.contentBlock h1 {
+  font-size: 3rem;
+  margin-bottom: 35px;
+}
+
+.contentBlock p {
+  font-size: 1rem;
+  margin-bottom: 70px;
+}
