@@ -2,13 +2,18 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import styles from './Header.module.scss'
 import AuthModal from '../Auth/AuthModal'
+import { useCart } from '../../context/CartContext'
 
 const Header = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [user, setUser] = useState(null)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const { cartItems } = useCart()
 
-  // Загружаем пользователя при монтировании компонента
+  const getCartCount = () => {
+    return cartItems ? cartItems.reduce((total, item) => total + (item.quantity || 1), 0) : 0;
+  };
+
   useEffect(() => {
     const savedUser = localStorage.getItem('user')
     if (savedUser) {
@@ -48,7 +53,7 @@ const Header = () => {
           </div>
           <div className={styles.right}>
             <Link href="/support" className={styles.link}>Support</Link>
-            <Link href="/cart" className={styles.link}>Cart (0)</Link>
+            <Link href="/cart" className={styles.link}>Cart ({getCartCount()})</Link>
             {user ? (
               <div className={styles.userMenu}>
                 <button 

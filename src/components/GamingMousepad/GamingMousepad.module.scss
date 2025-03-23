@@ -1,0 +1,402 @@
+$color-white: white;
+$color-black: #0d0d0d;
+$color-primary: #5d3fff;
+$color-secondary: #ff52b6;
+$color-error: #f83a3a;
+$color-text-light: rgba(255, 255, 255, 0.7);
+$color-text-dark: #5f5f5f;
+$font-size-base: 15px;
+$font-size-large: 16px;
+$font-size-small: 0.8rem;
+$transition-duration: 0.3s;
+$border-radius: 12px;
+
+.gamingmousepad {
+    padding: 150px 0 40px;
+    background: transparent;
+    position: relative;
+    z-index: 2;
+
+    @media (max-width: 768px) {
+        padding: 40px 0 80px;
+    }
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+
+    h2 {
+        color: $color-white;
+        text-align: center;
+        font-size: 32px;
+        font-weight: 600;
+        margin: 0 0 40px;
+        width: 100%;
+    }
+
+    @media (max-width: 768px) {
+        gap: 20px;
+        text-align: center;
+    }
+}
+
+.sortWrapper {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sortContainer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 24px;
+    position: relative;
+}
+
+.sortControls {
+    position: relative;
+    display: inline-block;
+}
+
+.sortButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba($color-black, 0.8);
+    border: 1px solid rgba($color-white, 0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: $font-size-base;
+    color: $color-white;
+    transition: all $transition-duration ease;
+
+    &:hover {
+        background: rgba($color-black, 0.9);
+        border-color: rgba($color-white, 0.4);
+    }
+}
+
+.arrow {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform $transition-duration ease;
+
+    svg {
+        width: 12px;
+        height: 12px;
+        fill: $color-white;
+    }
+
+    &.rotate {
+        transform: rotate(180deg);
+    }
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: rgba($color-black, 0.9);
+    border: 1px solid rgba($color-white, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    margin-top: 8px;
+    min-width: 200px;
+
+    div {
+        padding: 8px 16px;
+        cursor: pointer;
+        font-size: $font-size-base;
+        color: $color-white;
+        transition: background $transition-duration ease;
+
+        &:hover {
+            background: rgba($color-white, 0.1);
+        }
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+    align-items: stretch;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.product {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    border-radius: $border-radius;
+    overflow: hidden;
+    background: rgba($color-black, 0.95);
+    transition: all $transition-duration ease;
+    position: relative;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+    margin-bottom: 20px;
+    height: 100%;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        transition: all $transition-duration ease;
+    }
+
+    &::before {
+        inset: 0;
+        padding: 1px;
+        border-radius: $border-radius;
+        background: linear-gradient(135deg, rgba($color-primary, 0.5), rgba($color-secondary, 0.5) 50%, transparent);
+        -webkit-mask: linear-gradient($color-white 0 0) content-box, linear-gradient($color-white 0 0);
+        mask: linear-gradient($color-white 0 0) content-box, linear-gradient($color-white 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+    }
+
+    &::after {
+        inset: -50% -50% 50% 50%;
+        background: radial-gradient(circle, rgba($color-primary, 0.15), transparent 70%);
+        opacity: 0;
+        transform: translate(100%, 100%);
+        pointer-events: none;
+    }
+
+    &:hover {
+        transform: translateY(-5px);
+        background: rgba(18, 18, 18, 0.95);
+
+        &::before {
+            background: linear-gradient(135deg, rgba($color-primary, 0.8), rgba($color-secondary, 0.8) 50%, transparent);
+        }
+
+        &::after {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        .imageWrapper img {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        .title {
+            background: linear-gradient(90deg, $color-primary, $color-secondary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba($color-primary, 0.3);
+        }
+    }
+
+    .title {
+        color: $color-white;
+        font-weight: 500;
+        transition: all $transition-duration ease;
+    }
+
+    .price {
+        color: $color-text-light;
+        transition: all $transition-duration ease;
+    }
+}
+
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    display: block;
+    text-decoration: none;
+    overflow: hidden;
+    border: none;
+    flex-shrink: 0;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, rgba($color-primary, 0.5), rgba($color-secondary, 0.5) 50%, transparent);
+        transition: all $transition-duration ease;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.5s ease;
+    }
+}
+
+.tag,
+.discount {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    padding: 4px 16px;
+    color: $color-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 60px;
+    font-size: $font-size-small;
+    z-index: 2;
+    text-shadow: 0 0 10px rgba($color-white, 0.5);
+}
+
+.tag {
+    background: linear-gradient(135deg, $color-primary, $color-secondary);
+    box-shadow: 0 0 15px rgba($color-primary, 0.3);
+    animation: tagPulse 2s infinite;
+}
+
+.discount {
+    background: $color-error;
+    box-shadow: 0 0 15px rgba($color-error, 0.3);
+}
+
+@keyframes tagPulse {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba($color-primary, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba($color-primary, 0.5);
+    }
+}
+
+.textContent {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    flex-grow: 1;
+    box-sizing: border-box;
+    background: transparent;
+    width: 100%;
+}
+
+.textContentSale {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.title {
+    margin-bottom: 6px;
+    font-size: $font-size-large;
+    font-weight: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: 100%;
+    padding: 0 8px;
+    box-sizing: border-box;
+}
+
+.price,
+.price_old,
+.price_sale {
+    font-size: $font-size-base;
+    text-align: center;
+    transition: color $transition-duration ease;
+    padding: 10px 0 0;
+}
+
+.price_old {
+    margin-left: 10px;
+    color: $color-text-dark;
+}
+
+.price_sale {
+    color: $color-error;
+}
+
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1800px;
+    }
+}
+
+@media (max-width: 1366px) {
+    .container {
+        max-width: 1280px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .product {
+        aspect-ratio: 328/462;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 24px;
+    }
+}
+
+.addToCartButton {
+    margin: auto auto 20px;
+    padding: 8px 24px;
+    width: 160px;
+    background: linear-gradient(135deg, $color-primary, $color-secondary);
+    border: none;
+    border-radius: 60px;
+    color: $color-white;
+    font-size: $font-size-base;
+    cursor: pointer;
+    transition: all $transition-duration ease;
+    box-shadow: 0 4px 15px rgba($color-primary, 0.3);
+    position: relative;
+    z-index: 2;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba($color-primary, 0.4);
+        background: linear-gradient(135deg, lighten($color-primary, 5%), lighten($color-secondary, 5%));
+    }
+
+    &:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 10px rgba($color-primary, 0.2);
+    }
+} 

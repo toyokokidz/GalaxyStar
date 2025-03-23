@@ -1,19 +1,19 @@
 .heroWrapper {
-  padding: 20px 20px 60px;
-  margin: 0 auto;
+  padding: 0 20px 60px;
+  margin: -80px auto 0;
   max-width: 1424px;
   position: relative;
-  z-index: 10;
+  z-index: 1;
 }
 
 .heroSwiper {
   position: relative;
-  border-radius: 32px;
+  border-radius: 0 0 32px 32px;
   overflow: hidden;
   width: 100%;
   aspect-ratio: 16/9;
   min-height: 600px;
-  max-height: calc(100vh - 180px);
+  max-height: calc(100vh - 100px);
   display: flex;
   align-items: center;
   justify-content: center;
