@@ -44,7 +44,7 @@ const Header = () => {
           <div className={styles.left}>
             <Link href="/keyboard" className={styles.link}>Keyboard</Link>
             <Link href="/mouse" className={styles.link}>Mouse</Link>
-            <Link href="/mousepad" className={styles.link}>MousePad</Link>
+            <Link href="/accessoires" className={styles.link}>Accessoires</Link>
           </div>
           <div className={styles.center}>
             <Link href="/" className={styles.logo}>
