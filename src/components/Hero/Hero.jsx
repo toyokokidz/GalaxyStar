@@ -1,61 +1,15 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import Link from 'next/link';
 import styles from './Hero.module.scss';
 import { useRef, useEffect, useState } from 'react';
+import HeroSlide from './HeroSlide';
+import { slides } from './heroData';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 const Hero = () => {
-  const slides = [
-    {
-      bg: '/videos/anime8.mp4',
-      type: 'video',
-      productImage: '/images/anime-mousepad.jpg',
-      title: 'Samurai Series Pad',
-      description: 'Traditional Japanese art meets modern gaming performance',
-      link: '/products/samurai-pad',
-      theme: 'dark-theme',
-      sliderTitle: 'Precision & Style',
-      sliderDescription: 'Where Gaming Excellence Meets Artistic Expression'
-    },
-    {
-      bg: '/videos/anime5.mp4',
-      type: 'video',
-      productImage: '/images/anime-mousepad.jpg',
-      title: 'Neo Tokyo Collection',
-      description: 'Cyberpunk-inspired mousepad with LED edge lighting',
-      link: '/products/neo-tokyo',
-      theme: 'blue-theme',
-      sliderTitle: 'Future Forward',
-      sliderDescription: 'Experience Tomorrows Gaming Technology Today'
-    },
-    {
-      bg: '/images/anime2.jpg',
-      type: 'image',
-      productImage: '/images/anime-mousepad.jpg',
-      title: 'Sakura Edition Gaming Pad',
-      description: 'Exclusive design with cherry blossom theme',
-      link: '/products/sakura-pad',
-      theme: 'green-theme',
-      sliderTitle: 'Natural Beauty',
-      sliderDescription: 'Harmony of Nature and Gaming Performance'
-    },
-    {
-      bg: '/videos/anime10.mp4',
-      type: 'video',
-      productImage: '/images/anime-mousepad.jpg',
-      title: 'Limited Edition Anime Mousepad XL',
-      description: 'Premium gaming surface with unique anime artwork',
-      link: '/products/anime-mousepad',
-      theme: 'light',
-      sliderTitle: 'Elite Gaming Gear',
-      sliderDescription: 'Designed for Champions, Made for Legends'
-    },
-  ];
-
   const handleExplore = () => {
     const categoriesSection = document.getElementById('categories');
     if (categoriesSection) {
@@ -98,48 +52,6 @@ const Hero = () => {
     }
   };
 
-  const renderBackground = (slide, index) => {
-    if (slide.type === 'video') {
-      return (
-        <video
-          ref={el => videoRefs.current[index] = el}
-          className={styles.videoBackground}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          onLoadedData={() => handleVideoLoad(index)}
-        >
-          <source 
-            src={slide.bg} 
-            type="video/mp4"
-            media="all and (min-width: 768px)"
-          />
-        </video>
-      );
-    }
-    return <div className={styles.imageBackground} style={{ backgroundImage: `url(${slide.bg})` }} />;
-  };
-
-  const renderFeatureCard = (slide) => (
-    <Link 
-      href={slide.link} 
-      className={`${styles.featureCard} ${slide.theme === 'light' ? styles.light : ''} ${!imagesLoaded ? styles.loading : ''}`}
-    >
-      <div className={styles.imageWrapper}>
-        <img 
-          src={slide.productImage} 
-          alt={slide.title}
-          loading="eager"
-          decoding="async"
-        />
-      </div>
-      <div className={styles.title}>{slide.title}</div>
-      <div className={styles.description}>{slide.description}</div>
-    </Link>
-  );
-
   return (
     <div className={styles.heroWrapper}>
       <Swiper
@@ -170,21 +82,14 @@ const Hero = () => {
       >
         {optimizedSlides.map((slide, index) => (
           <SwiperSlide key={index}>
-            <section className={styles.hero}>
-              {renderBackground(slide, index)}
-              <div className={styles.content}>
-                <p className={styles.tagline}>
-                  {slide.sliderDescription}
-                </p>
-                <h1 className={styles.title}>
-                  {slide.sliderTitle}
-                </h1>
-                <button onClick={handleExplore} className={styles.exploreButton}>
-                  Explore
-                </button>
-              </div>
-              {renderFeatureCard(slide)}
-            </section>
+            <HeroSlide
+              slide={slide}
+              index={index}
+              videoRefs={videoRefs}
+              imagesLoaded={imagesLoaded}
+              handleVideoLoad={handleVideoLoad}
+              handleExplore={handleExplore}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
