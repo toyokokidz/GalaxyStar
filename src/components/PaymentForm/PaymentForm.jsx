@@ -2,57 +2,58 @@ import React, { useState, useEffect } from 'react';
 import styles from './PaymentForm.module.scss';
 
 const PaymentForm = () => {
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [country, setCountry] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [address, setAddress] = useState('');
-  const [apartment, setApartment] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [zipCode, setZipCode] = useState('');
-  const [cardNumber, setCardNumber] = useState('');
-  const [expiryDate, setExpiryDate] = useState('');
-  const [cvc, setCvc] = useState('');
-  const [nameOnCard, setNameOnCard] = useState('');
-  const [useShippingAddress, setUseShippingAddress] = useState(false);
-  const [emailNewsOffers, setEmailNewsOffers] = useState(false); 
-  const [textNewsOffers, setTextNewsOffers] = useState(false); 
+  const [person, setPerson] = useState({
+    email: '',
+    phone: '',
+    country: '',
+    firstName: '',
+    lastName: '',
+    address: '',
+    apartment: '',
+    city: '',
+    state: '',
+    zipCode: '',
+    cardNumber: '',
+    expiryDate: '',
+    cvc: '',
+    nameOnCard: '',
+    useShippingAddress: false,
+    emailNewsOffers: false,
+    textNewsOffers: false,
+  });
+
   const [paymentMethod, setPaymentMethod] = useState('creditCard');
-  
+
   // Автоматическое заполнение имени на карте
   useEffect(() => {
-    if (firstName && lastName) {
-      setNameOnCard(`${firstName} ${lastName}`);
+    if (person.firstName && person.lastName) {
+      setPerson((prev) => ({
+        ...prev,
+        nameOnCard: `${person.firstName} ${person.lastName}`,
+      }));
     }
-  }, [firstName, lastName]);
+  }, [person.firstName, person.lastName]);
 
-  // Проверка email
   const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
   };
 
-  // Проверка номера телефона
   const validatePhone = (phone) => {
     const regex = /^\d{10}$/;
     return regex.test(phone);
   };
 
-  // Проверка ZIP code
   const validateZipCode = (zipCode) => {
     const regex = /^\d{5}$/;
     return regex.test(zipCode);
   };
 
-  // Проверка номера карты
   const validateCardNumber = (cardNumber) => {
     const regex = /^\d{16}$/;
     return regex.test(cardNumber);
   };
 
-  // Проверка CVC
   const validateCVC = (cvc) => {
     const regex = /^\d{3}$/;
     return regex.test(cvc);
@@ -64,36 +65,44 @@ const PaymentForm = () => {
     if (value.length > 2) {
       value = value.slice(0, 2) + '/' + value.slice(2, 4);
     }
-    setExpiryDate(value);
+    setPerson((prev) => ({ ...prev, expiryDate: value }));
+  };
+
+  // Обработчик изменения полей формы
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setPerson((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Проверка всех данных перед отправкой
-    if (!validateEmail(email)) {
+    if (!validateEmail(person.email)) {
       alert('Пожалуйста, введите корректный email.');
       return;
     }
-    if (!validatePhone(phone)) {
+    if (!validatePhone(person.phone)) {
       alert('Пожалуйста, введите корректный номер телефона (10 цифр).');
       return;
     }
-    if (!validateZipCode(zipCode)) {
+    if (!validateZipCode(person.zipCode)) {
       alert('Пожалуйста, введите корректный ZIP code (5 цифр).');
       return;
     }
-    if (!validateCardNumber(cardNumber)) {
+    if (!validateCardNumber(person.cardNumber)) {
       alert('Пожалуйста, введите корректный номер карты (16 цифр).');
       return;
     }
-    if (!validateCVC(cvc)) {
+    if (!validateCVC(person.cvc)) {
       alert('Пожалуйста, введите корректный CVC код (3 цифры).');
       return;
     }
 
-    // Обработка данных формы
-    console.log('Форма отправлена');
+    console.log('Форма отправлена', person);
   };
 
   return (
@@ -105,17 +114,19 @@ const PaymentForm = () => {
           <h2 className={styles.sectionTitle}>Contact</h2>
           <input
             type="email"
+            name="email"
             placeholder="Email or mobile phone number"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={person.email}
+            onChange={handleInputChange}
             required
             className={styles.input}
           />
           <label className={styles.checkboxLabel}>
             <input
               type="checkbox"
-              checked={emailNewsOffers}
-              onChange={(e) => setEmailNewsOffers(e.target.checked)}
+              name="emailNewsOffers"
+              checked={person.emailNewsOffers}
+              onChange={handleInputChange}
               className={styles.checkboxInput}
             />
             Email me with news and offers
@@ -126,8 +137,9 @@ const PaymentForm = () => {
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Delivery</h2>
           <select
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
+            name="country"
+            value={person.country}
+            onChange={handleInputChange}
             required
             className={styles.input}
           >
@@ -136,76 +148,84 @@ const PaymentForm = () => {
             <option value="CA">Canada</option>
             <option value="MX">Mexico</option>
             <option value="BR">Brazil</option>
-            {/* Можно добавить еще стран */}
           </select>
           <input
             type="text"
+            name="firstName"
             placeholder="First name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            value={person.firstName}
+            onChange={handleInputChange}
             required
             className={styles.input}
           />
           <input
             type="text"
+            name="lastName"
             placeholder="Last name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            value={person.lastName}
+            onChange={handleInputChange}
             required
             className={styles.input}
           />
           <input
             type="text"
+            name="address"
             placeholder="Address"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
+            value={person.address}
+            onChange={handleInputChange}
             required
             className={styles.input}
           />
           <input
             type="text"
+            name="apartment"
             placeholder="Apartment, suite, etc. (optional)"
-            value={apartment}
-            onChange={(e) => setApartment(e.target.value)}
+            value={person.apartment}
+            onChange={handleInputChange}
             className={styles.input}
           />
           <input
             type="text"
+            name="city"
             placeholder="City"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
+            value={person.city}
+            onChange={handleInputChange}
             required
             className={styles.input}
           />
           <input
             type="text"
+            name="state"
             placeholder="State"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
+            value={person.state}
+            onChange={handleInputChange}
             required
             className={styles.input}
           />
           <input
             type="text"
+            name="zipCode"
             placeholder="ZIP code"
-            value={zipCode}
-            onChange={(e) => setZipCode(e.target.value)}
+            value={person.zipCode}
+            onChange={handleInputChange}
             required
             className={styles.input}
           />
           <input
             type="text"
+            name="phone"
             placeholder="Phone"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            value={person.phone}
+            onChange={handleInputChange}
             required
             className={styles.input}
           />
           <label className={styles.checkboxLabel}>
             <input
               type="checkbox"
-              checked={textNewsOffers}
-              onChange={(e) => setTextNewsOffers(e.target.checked)}
+              name="textNewsOffers"
+              checked={person.textNewsOffers}
+              onChange={handleInputChange}
               className={styles.checkboxInput}
             />
             Text me with news and offers
@@ -215,7 +235,7 @@ const PaymentForm = () => {
         {/* Секция Shipping Method */}
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Shipping Method</h2>
-          {firstName && lastName && address && city && state && zipCode ? (
+          {person.firstName && person.lastName && person.address && person.city && person.state && person.zipCode ? (
             <p className={styles.sectionText}>Standard $6.00</p>
           ) : (
             <p className={styles.sectionText}>Enter your shipping address to view available shipping methods.</p>
@@ -254,41 +274,46 @@ const PaymentForm = () => {
             <>
               <input
                 type="text"
+                name="cardNumber"
                 placeholder="Card number"
-                value={cardNumber}
-                onChange={(e) => setCardNumber(e.target.value)}
+                value={person.cardNumber}
+                onChange={handleInputChange}
                 required
                 className={styles.paymentInput}
               />
               <input
                 type="text"
+                name="expiryDate"
                 placeholder="Expiration date (MM / YY)"
-                value={expiryDate}
+                value={person.expiryDate}
                 onChange={handleExpiryDateChange}
                 required
                 className={styles.paymentInput}
               />
               <input
                 type="text"
+                name="cvc"
                 placeholder="Security code"
-                value={cvc}
-                onChange={(e) => setCvc(e.target.value)}
+                value={person.cvc}
+                onChange={handleInputChange}
                 required
                 className={styles.paymentInput}
               />
               <input
                 type="text"
+                name="nameOnCard"
                 placeholder="Name on card"
-                value={nameOnCard}
-                onChange={(e) => setNameOnCard(e.target.value)}
+                value={person.nameOnCard}
+                onChange={handleInputChange}
                 required
                 className={styles.paymentInput}
               />
               <label className={styles.paymentCheckboxLabel}>
                 <input
                   type="checkbox"
-                  checked={useShippingAddress}
-                  onChange={(e) => setUseShippingAddress(e.target.checked)}
+                  name="useShippingAddress"
+                  checked={person.useShippingAddress}
+                  onChange={handleInputChange}
                   className={styles.paymentCheckboxInput}
                 />
                 Use shipping address as billing address

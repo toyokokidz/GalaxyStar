@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import Link from 'next/link';
 import styles from './Hero.module.scss';
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -63,17 +63,53 @@ const Hero = () => {
     }
   };
 
-  const renderBackground = (slide) => {
+  const videoRefs = useRef([]);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
+  const optimizedSlides = slides.map(slide => ({
+    ...slide,
+    bg: isMobile && slide.type === 'video' ? slide.bg.replace('/videos/', '/images/').replace('.mp4', '.jpg') : slide.bg,
+    type: isMobile && slide.type === 'video' ? 'image' : slide.type
+  }));
+
+  useEffect(() => {
+    const preloadImages = () => {
+      const imagePromises = slides.map(slide => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.src = slide.productImage;
+          img.onload = resolve;
+        });
+      });
+
+      Promise.all(imagePromises).then(() => {
+        setImagesLoaded(true);
+      });
+    };
+
+    preloadImages();
+  }, []);
+
+  const handleVideoLoad = (index) => {
+    if (index === 0) {
+      setImagesLoaded(true);
+    }
+  };
+
+  const renderBackground = (slide, index) => {
     if (slide.type === 'video') {
       return (
         <video
+          ref={el => videoRefs.current[index] = el}
           className={styles.videoBackground}
           autoPlay
           muted
           loop
           playsInline
-          preload="none"
-          loading="lazy"
+          preload="auto"
+          onLoadedData={() => handleVideoLoad(index)}
         >
           <source 
             src={slide.bg} 
@@ -86,13 +122,23 @@ const Hero = () => {
     return <div className={styles.imageBackground} style={{ backgroundImage: `url(${slide.bg})` }} />;
   };
 
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-
-  const optimizedSlides = slides.map(slide => ({
-    ...slide,
-    bg: isMobile && slide.type === 'video' ? slide.bg.replace('/videos/', '/images/').replace('.mp4', '.jpg') : slide.bg,
-    type: isMobile && slide.type === 'video' ? 'image' : slide.type
-  }));
+  const renderFeatureCard = (slide) => (
+    <Link 
+      href={slide.link} 
+      className={`${styles.featureCard} ${slide.theme === 'light' ? styles.light : ''} ${!imagesLoaded ? styles.loading : ''}`}
+    >
+      <div className={styles.imageWrapper}>
+        <img 
+          src={slide.productImage} 
+          alt={slide.title}
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+      <div className={styles.title}>{slide.title}</div>
+      <div className={styles.description}>{slide.description}</div>
+    </Link>
+  );
 
   return (
     <div className={styles.heroWrapper}>
@@ -112,14 +158,20 @@ const Hero = () => {
         autoplay={{ 
           delay: 10000,
           disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+          waitForTransition: true,
         }}
+        speed={1000}
         loop={true}
         className={styles.heroSwiper}
+        preloadImages={true}
+        watchSlidesProgress={true}
+        slidesPerView={1}
       >
         {optimizedSlides.map((slide, index) => (
           <SwiperSlide key={index}>
             <section className={styles.hero}>
-              {renderBackground(slide)}
+              {renderBackground(slide, index)}
               <div className={styles.content}>
                 <p className={styles.tagline}>
                   {slide.sliderDescription}
@@ -131,33 +183,11 @@ const Hero = () => {
                   Explore
                 </button>
               </div>
-
-              <Link 
-                href={slide.link} 
-                className={`${styles.featureCard} ${slide.theme === 'light' ? styles.light : ''}`}
-              >
-                <div className={styles.imageWrapper}>
-                  <img src={slide.productImage} alt={slide.title} />
-                </div>
-                <div className={styles.title}>{slide.title}</div>
-                <div className={styles.description}>{slide.description}</div>
-              </Link>
+              {renderFeatureCard(slide)}
             </section>
           </SwiperSlide>
         ))}
       </Swiper>
-
-      <div className={styles.featureCardsContainer}>
-        {optimizedSlides.map((slide, index) => (
-          <Link href={slide.link} className={`${styles.featureCard} ${slide.theme === 'light' ? styles.light : ''}`} key={index}>
-            <div className={styles.imageWrapper}>
-              <img src={slide.productImage} alt={slide.title} />
-            </div>
-            <h3>{slide.title}</h3>
-            <p>{slide.description}</p>
-          </Link>
-        ))}
-      </div>
     </div>
   );
 };
