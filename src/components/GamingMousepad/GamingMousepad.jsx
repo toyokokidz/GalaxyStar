@@ -89,6 +89,9 @@ const GamingMousepad = () => {
         <section className={styles.gamingmousepad}>
             <div className={styles.header}>
                 <h2>Galaxy Gaming Mousepad</h2>
+
+            </div>
+            <div className="container">
                 <div className={styles.sortWrapper}>
                     <div className={styles.sortContainer}>
                         <div className={styles.sortControls}>
@@ -125,8 +128,6 @@ const GamingMousepad = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="container">
                 <div className={styles.grid}>
                     {sortedProducts.map(product => (
                         <div key={product.id} className={styles.product}>

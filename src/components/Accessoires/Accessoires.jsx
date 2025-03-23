@@ -1,92 +1,66 @@
 import { useState } from 'react';
 import Link from 'next/link'
-import styles from './GamingMouse.module.scss'
+import styles from './Accessoires.module.scss'
 import { useCart } from '../../context/CartContext'
 
 const products = [
     {
         id: 1,
-        name: 'Galaxy Mouse Black',
-        price: '$89.99',
-        image: '/images/galaxy-mouse-black.jpg',
+        name: 'Galaxy 65W Charger White',
+        price: '$49.95',
         tag: 'NEW ARRIVAL',
-        link: '/mouse/galaxy-mouse-black'
+        image: '/images/galaxy-charger-white.webp',
+        link: '/accessoires/charger-white'
     },
     {
         id: 2,
-        name: 'Galaxy X Pro 8K Wireless Gaming Mouse',
-        price: '$139.95',
-        image: '/images/galaxy-mouse-xpro.jpg',
+        name: 'Galaxy 65W Charger Yellow',
+        price: '$49.95',
         tag: 'NEW ARRIVAL',
-        link: '/mouse/galaxy-mouse-xpro'
+        image: '/images/galaxy-charger-yellow.webp',
+        link: '/accessoires/charger-yellow'
     },
     {
         id: 3,
-        name: 'Galaxy X Wireless Gaming Mouse',
-        price: '$109.95',
-        image: '/images/galaxy-mouse-x.jpg',
+        name: 'Galaxy Pro Cyberpunk Keycaps',
+        price: '$39.95',
         tag: 'NEW ARRIVAL',
-        link: '/mouse/galaxy-mouse-x'
+        image: '/images/galaxy-keycaps-cyberpunk.webp',
+        link: '/accessoires/keycaps-cyberpunk'
     },
     {
         id: 4,
-        name: 'Galaxy Mouse Yellow',
-        price: '$89.99',
-        image: '/images/galaxy-mouse-yellow.jpg',
-        tag: 'NEW ARRIVAL',
-        link: '/mouse/galaxy-mouse-yellow'
+        name: 'Galaxy Wireless Speaker Black',
+        price: '$199.95',
+        image: '/images/galaxy-speaker-black.webp',
+        link: '/accessoires/galaxy-dongle'
     },
     {
         id: 5,
-        name: 'Galaxy M1 Pro Gunmetal Gray',
-        price: '$99.95',
-        image: '/images/galaxy-mouse-gunmetal.jpg',
-        link: '/mouse/galaxy-mouse-gunmetal'
+        name: 'Galaxy Mousepad XL',
+        price: '$29.95',
+        image: '/images/anime-mousepad.jpg',
+        link: '/accessoires/galaxy-mousepad-xl'
     },
     {
         id: 6,
-        name: 'Galaxy M1 Pro Gradient Black',
-        price: '$99.95',
-        image: '/images/galaxy-mouse-gradient.jpg',
-        link: '/mouse/galaxy-mouse-gradient'
-    },
-    {
-        id: 7,
-        name: 'Galaxy M2 - Stealth Black',
-        price_sale: '$69.95',
-        price_old: '$79.95',
-        discount: 'Save 13%',
-        image: '/images/galaxy-mouse-stealth.jpg',
-        link: '/mouse/galaxy-mouse-stealth'
-    },
-    {
-        id: 8,
-        name: 'Galaxy M2 - Transparent Black',
-        price_sale: '$69.95',
-        price_old: '$79.95',
-        discount: 'Save 13%',
-        image: '/images/galaxy-mouse-transparent.jpg',
-        link: '/mouse/galaxy-mouse-transparent'
-    },
-    {
-        id: 9,
-        name: 'Galaxy M1 Pro Battle Worn Edition-Silver Mist',
-        price_sale: '$99.95',
-        price_old: '$129.95',
-        discount: 'Save 23%',
-        image: '/images/galaxy-mouse-smist.jpg',
-        link: '/mouse/galaxy-mouse-smist'
-    },
-    {
-        id: 10,
         name: 'Galaxy M1 Pro 4K Wireless Dongle',
         price: '$24.95',
         image: '/images/galaxy-dongle.jpg',
         link: '/accessoires/galaxy-dongle'
-    }
+    },
+    {
+        id: 7,
+        name: 'Galaxy Keyboard Wrist Rest Pad',
+        price_sale: '$9.99',
+        price_old: '$12.99',
+        discount: 'Save 23%',
+        image: '/images/galaxy-wrist-pad.webp',
+        link: '/accessoires/wrist-pad'
+    },
 ]
 
-const GamingMouse = () => {
+const Accessoires = () => {
     const [sortOption, setSortOption] = useState('id_asc'); // Состояние для выбора сортировки
     const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Состояние для открытия/закрытия dropdown
     const { addToCart } = useCart();
@@ -139,9 +113,9 @@ const GamingMouse = () => {
     };
 
     return (
-        <section className={styles.gamingmouse}>
+        <section className={styles.accessoires}>
             <div className={styles.header}>
-                <h2>Galaxy Gaming Mouse</h2>
+                <h2>Galaxy Accessoires</h2>
 
             </div>
             <div className="container">
@@ -204,7 +178,7 @@ const GamingMouse = () => {
                                         <p className={styles.price}>{product.price}</p>
                                     )}
                                 </div>
-                                <button 
+                                <button
                                     className={styles.addToCartButton}
                                     onClick={() => handleAddToCart(product)}
                                 >
@@ -219,4 +193,4 @@ const GamingMouse = () => {
     );
 };
 
-export default GamingMouse;
+export default Accessoires;

@@ -15,8 +15,6 @@ $border-radius: 12px;
 .gamingkeyboard {
     padding: 40px 0;
     background: transparent;
-    position: relative;
-    z-index: 2;
 
     @media (max-width: 768px) {
         padding: 20px 0;
@@ -34,7 +32,7 @@ $border-radius: 12px;
     flex-direction: column;
     align-items: center;
     padding: 0 20px;
-    margin-bottom: 40px;
+    //margin-bottom: 40px;
 
     h2 {
         font-size: 32px;
@@ -52,8 +50,8 @@ $border-radius: 12px;
 
 .sortWrapper {
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto 20px;
+    padding: 0 20px;
     display: flex;
     justify-content: flex-end;
 }
@@ -73,8 +71,9 @@ $border-radius: 12px;
     padding: 8px 16px;
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    color: $color-white;
+    border-radius: 20px;
+    font-size: $font-size-base;
+    color: $color-text-light;
     cursor: pointer;
     transition: all $transition-duration ease;
 
@@ -84,6 +83,7 @@ $border-radius: 12px;
 
     .arrow {
         transition: transform $transition-duration ease;
+        text-align: center;
 
         &.rotate {
             transform: rotate(180deg);
@@ -194,7 +194,6 @@ $border-radius: 12px;
     display: block;
     padding-top: 100%;
     overflow: hidden;
-    text-decoration: none;
     flex-shrink: 0;
 
     img {
@@ -211,17 +210,16 @@ $border-radius: 12px;
 .tag,
 .discount {
     position: absolute;
-    top: 12px;
-    left: 12px;
+    top: 16px;
+    left: 16px;
     padding: 4px 16px;
     color: $color-white;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 60px;
-    font-size: 12px;
-    font-weight: 500;
-    z-index: 1;
+    font-size: $font-size-small;
+    z-index: 2;
     text-shadow: 0 0 10px rgba($color-white, 0.5);
 }
 
@@ -232,7 +230,7 @@ $border-radius: 12px;
 }
 
 .discount {
-    background: rgba(255, 0, 0, 0.8);
+    background: $color-error;
     box-shadow: 0 0 15px rgba($color-error, 0.3);
 }
 
@@ -263,52 +261,41 @@ $border-radius: 12px;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    margin-bottom: 16px;
+    //margin-bottom: 16px;
     width: 100%;
 }
 
 .title {
-    margin-bottom: 12px;
     font-size: 18px;
     font-weight: 500;
+    //margin-bottom: 12px;
+    color: $color-white;
+    width: 100%;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    width: 100%;
-    padding: 0 8px;
-    box-sizing: border-box;
-    color: $color-white;
-    text-decoration: none;
-    transition: all $transition-duration ease;
-
-    &:hover {
-        color: $color-primary;
-    }
 }
 
-.price,
-.price_old,
-.price_sale {
+.price {
     font-size: 20px;
     font-weight: 600;
     color: $color-white;
-    text-align: center;
-    transition: color $transition-duration ease;
-    padding: 10px 0 0;
-}
-
-.price_old {
-    margin-left: 10px;
-    color: rgba(255, 255, 255, 0.5);
 }
 
 .price_sale {
+    font-size: 20px;
+    font-weight: 600;
     color: #FF3333;
 }
 
+.price_old {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
 .addToCartButton {
-    margin: auto auto 20px;
+    margin: 10px auto 0;
     padding: 8px 24px;
-    width: 160px;
+    max-width: 160px;
     background: linear-gradient(135deg, $color-primary, $color-secondary);
     border: none;
     border-radius: 60px;
@@ -354,4 +341,4 @@ $border-radius: 12px;
     .container {
         padding: 0 24px;
     }
-} 
+}
