@@ -1,4 +1,4 @@
-import styles from './Hero.module.scss';
+import styles from './HeroSlide.module.scss';
 import Link from 'next/link';
 
 const HeroSlide = ({ 
