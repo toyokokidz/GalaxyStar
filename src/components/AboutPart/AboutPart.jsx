@@ -67,7 +67,7 @@ const AboutPart = () => {
           <div className={styles.flexLine} ref={(el) => (flexLinesRef.current[1] = el)}>
             <div className={styles.flexItem}>
               <img 
-                src="/images/image4.png" 
+                src="/images/sirius.jpg" 
                 alt="video"
                 className={styles.image}
               />
