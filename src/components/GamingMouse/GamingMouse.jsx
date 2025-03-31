@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Link from 'next/link'
 import styles from './GamingMouse.module.scss'
-import { useCart } from '../../context/CartContext'
+import SortControls from "../SortControls/SortControls";
+import {useCart} from "../../context/CartContext";
 
 const products = [
     {
@@ -87,52 +88,8 @@ const products = [
 ]
 
 const GamingMouse = () => {
-    const [sortOption, setSortOption] = useState('id_asc'); // Состояние для выбора сортировки
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Состояние для открытия/закрытия dropdown
+    const [sortedProducts, setSortedProducts] = useState(products);
     const { addToCart } = useCart();
-
-    // Функция для сортировки продуктов
-    const sortedProducts = [...products].sort((a, b) => {
-        if (sortOption === 'id_asc') {
-            return a.id - b.id; // Сортировка по id по возрастанию
-        } else if (sortOption === 'price_asc') {
-            // Сортировка по цене по возрастанию (с учетом price_sale)
-            const priceA = parseFloat((a.price_sale || a.price).replace('$', ''));
-            const priceB = parseFloat((b.price_sale || b.price).replace('$', ''));
-            return priceA - priceB;
-        } else if (sortOption === 'price_desc') {
-            // Сортировка по цене по убыванию (с учетом price_sale)
-            const priceA = parseFloat((a.price_sale || a.price).replace('$', ''));
-            const priceB = parseFloat((b.price_sale || b.price).replace('$', ''));
-            return priceB - priceA;
-        }
-        return 0; // По умолчанию (не должно происходить)
-    });
-
-    // Функция для выбора сортировки
-    const handleSortChange = (option) => {
-        setSortOption(option);
-        setIsDropdownOpen(false); // Закрываем dropdown после выбора
-    };
-
-    // Функция для переключения dropdown
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
-    };
-
-    // Текст для выбранной опции
-    const getSortOptionText = (option) => {
-        switch (option) {
-            case 'id_asc':
-                return 'Sort by Relevance';
-            case 'price_asc':
-                return 'Sort by Price, low to high';
-            case 'price_desc':
-                return 'Sort by Price, high to low';
-            default:
-                return 'Sort by';
-        }
-    };
 
     const handleAddToCart = (product) => {
         addToCart(product);
@@ -142,47 +99,18 @@ const GamingMouse = () => {
         <section className={styles.gamingmouse}>
             <div className={styles.header}>
                 <h2>Galaxy Gaming Mouse</h2>
-
             </div>
             <div className="container">
                 <div className={styles.sortWrapper}>
                     <div className={styles.sortContainer}>
-                        <div className={styles.sortControls}>
-                            <button className={styles.sortButton} onClick={toggleDropdown}>
-                                <span>{getSortOptionText(sortOption)}</span>
-                                <div className={`${styles.arrow} ${isDropdownOpen ? styles.rotate : ''}`}>
-                                    <svg
-                                        width="12"
-                                        height="12"
-                                        viewBox="0 0 12 12"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M6 9L2 5H10L6 9Z"
-                                            fill="currentColor"
-                                        />
-                                    </svg>
-                                </div>
-                            </button>
-                            {isDropdownOpen && (
-                                <div className={styles.dropdown}>
-                                    <div onClick={() => handleSortChange('id_asc')}>
-                                        Sort by Relevance
-                                    </div>
-                                    <div onClick={() => handleSortChange('price_asc')}>
-                                        Sort by Price, low to high
-                                    </div>
-                                    <div onClick={() => handleSortChange('price_desc')}>
-                                        Sort by Price, high to low
-                                    </div>
-                                </div>
-                            )}
-                        </div>
+                        <SortControls
+                            products={products}
+                            onSortChange={setSortedProducts}
+                        />
                     </div>
                 </div>
                 <div className={styles.grid}>
-                    {sortedProducts.map(product => (
+                    {sortedProducts.map((product) => (
                         <div key={product.id} className={styles.product}>
                             <Link href={product.link} className={styles.imageWrapper}>
                                 {product.tag && <span className={styles.tag}>{product.tag}</span>}
@@ -204,7 +132,7 @@ const GamingMouse = () => {
                                         <p className={styles.price}>{product.price}</p>
                                     )}
                                 </div>
-                                <button 
+                                <button
                                     className={styles.addToCartButton}
                                     onClick={() => handleAddToCart(product)}
                                 >
