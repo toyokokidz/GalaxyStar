@@ -1,56 +1,45 @@
-import styles from './ProductGrid.module.scss'
+import Link from 'next/link';
+import styles from './ProductGrid.module.scss';
+import { useCart } from '../../context/CartContext';
 
-const products = [
-  {
-    id: 1,
-    name: 'Galaxy Mechanical Keyboard',
-    image: '/images/mechanical-keyboard-black.jpg',
-    size: 'large'
-  },
-  {
-    id: 2,
-    name: 'Galaxy Mouse',
-    image: '/images/galaxy-mouse.jpg',
-    size: 'medium'
-  },
-  {
-    id: 3,
-    name: 'MousePad',
-    image: '/images/mousepad.jpg',
-    size: 'medium'
-  },
-  {
-    id: 4,
-    name: 'Palmrest',
-    image: '/images/palmrest.jpg',
-    size: 'small'
-  },
-  {
-    id: 5,
-    name: 'Keycaps',
-    image: '/images/keycaps.jpg',
-    size: 'small'
-  }
-]
+const ProductGrid = ({ products }) => {
+  const { addToCart } = useCart();
 
-const ProductGrid = () => {
   return (
-    <section className={styles.productGrid}>
-      <div className={styles.container}>
-        <div className={styles.grid}>
-          {products.map(product => (
-            <div 
-              key={product.id} 
-              className={`${styles.item} ${styles[product.size]}`}
-            >
-              <img src={product.image} alt={product.name} />
-              <div className={styles.name}>{product.name}</div>
+      <div className={styles.grid}>
+        {products.map((product) => (
+            <div key={product.id} className={styles.product}>
+              <Link href={product.link} className={styles.imageWrapper}>
+                {product.tag && <span className={styles.tag}>{product.tag}</span>}
+                {product.discount && <span className={styles.discount}>{product.discount}</span>}
+                <img
+                    src={product.image}
+                    alt={product.name}
+                />
+              </Link>
+              <div className={styles.textContent}>
+                <div className={styles.title}>{product.name}</div>
+                <div className={styles.textContentSale}>
+                  {product.price_sale ? (
+                      <>
+                        <p className={styles.price_sale}>{product.price_sale}</p>
+                        <s className={styles.price_old}>{product.price_old}</s>
+                      </>
+                  ) : (
+                      <p className={styles.price}>{product.price}</p>
+                  )}
+                </div>
+                <button
+                    className={styles.addToCartButton}
+                    onClick={() => addToCart(product)}
+                >
+                  Add to Cart
+                </button>
+              </div>
             </div>
-          ))}
-        </div>
+        ))}
       </div>
-    </section>
-  )
-}
+  );
+};
 
-export default ProductGrid 
+export default ProductGrid;

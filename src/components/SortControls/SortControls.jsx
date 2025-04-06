@@ -2,15 +2,27 @@ import { useState } from 'react';
 import Arrow from '../../assets/Arrow.svg';
 import styles from './SortControls.module.scss';
 
+const SORT_VALUES = {
+    RELEVANCE: 'relevance',
+    PRICE_ASC: 'price_asc',
+    PRICE_DESC: 'price_desc',
+};
+
+const DEFAULT_SORT_OPTIONS = [
+    { value: SORT_VALUES.RELEVANCE, label: 'Sort by Relevance' },
+    { value: SORT_VALUES.PRICE_ASC, label: 'Sort by Price, low to high' },
+    { value: SORT_VALUES.PRICE_DESC, label: 'Sort by Price, high to low' },
+];
+
+const getPriceValue = (product) => {
+    return parseFloat((product.price_sale || product.price).replace('$', ''));
+};
+
 const SortControls = ({
                           products,
                           onSortChange,
-                          sortOptions = [
-                              { value: 'id_asc', label: 'Sort by Relevance' },
-                              { value: 'price_asc', label: 'Sort by Price, low to high' },
-                              { value: 'price_desc', label: 'Sort by Price, high to low' },
-                          ],
-                          defaultSort = 'id_asc',
+                          sortOptions = DEFAULT_SORT_OPTIONS,
+                          defaultSort = SORT_VALUES.RELEVANCE,
                       }) => {
     const [sortOption, setSortOption] = useState(defaultSort);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -20,20 +32,18 @@ const SortControls = ({
         setIsDropdownOpen(false);
 
         const sortedProducts = [...products].sort((a, b) => {
-            if (option === 'id_asc') return a.id - b.id;
-            else if (option === 'price_asc') {
-                const priceA = parseFloat((a.price_sale || a.price).replace('$', ''));
-                const priceB = parseFloat((b.price_sale || b.price).replace('$', ''));
-                return priceA - priceB;
-            } else if (option === 'price_desc') {
-                const priceA = parseFloat((a.price_sale || a.price).replace('$', ''));
-                const priceB = parseFloat((b.price_sale || b.price).replace('$', ''));
-                return priceB - priceA;
-            }
+            if (option === SORT_VALUES.RELEVANCE) return a.id - b.id;
+
+            const priceA = getPriceValue(a);
+            const priceB = getPriceValue(b);
+
+            if (option === SORT_VALUES.PRICE_ASC) return priceA - priceB;
+            else if (option === SORT_VALUES.PRICE_DESC) return priceB - priceA;
+
             return 0;
         });
 
-        onSortChange(sortedProducts); // Возвращаем отсортированные данные
+        onSortChange(sortedProducts);
     };
 
     const getCurrentLabel = () => {

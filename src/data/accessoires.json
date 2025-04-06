@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Galaxy 65W Charger White",
+    "price": "$49.95",
+    "tag": "NEW ARRIVAL",
+    "image": "/images/galaxy-charger-white.webp",
+    "link": "/accessoires/charger-white"
+  },
+  {
+    "id": 2,
+    "name": "Galaxy 65W Charger Yellow",
+    "price": "$49.95",
+    "tag": "NEW ARRIVAL",
+    "image": "/images/galaxy-charger-yellow.webp",
+    "link": "/accessoires/charger-yellow"
+  },
+  {
+    "id": 3,
+    "name": "Galaxy Pro Cyberpunk Keycaps",
+    "price": "$39.95",
+    "tag": "NEW ARRIVAL",
+    "image": "/images/galaxy-keycaps-cyberpunk.webp",
+    "link": "/accessoires/keycaps-cyberpunk"
+  },
+  {
+    "id": 4,
+    "name": "Galaxy Wireless Speaker Black",
+    "price": "$199.95",
+    "image": "/images/galaxy-speaker-black.webp",
+    "link": "/accessoires/galaxy-dongle"
+  },
+  {
+    "id": 5,
+    "name": "Galaxy Mousepad XL",
+    "price": "$29.95",
+    "image": "/images/anime-mousepad.jpg",
+    "link": "/accessoires/galaxy-mousepad-xl"
+  },
+  {
+    "id": 6,
+    "name": "Galaxy M1 Pro 4K Wireless Dongle",
+    "price": "$24.95",
+    "image": "/images/galaxy-dongle.jpg",
+    "link": "/accessoires/galaxy-dongle"
+  },
+  {
+    "id": 7,
+    "name": "Galaxy Keyboard Wrist Rest Pad",
+    "price_sale": "$9.99",
+    "price_old": "$12.99",
+    "discount": "Save 23%",
+    "image": "/images/galaxy-wrist-pad.webp",
+    "link": "/accessoires/wrist-pad"
+  }
+]
