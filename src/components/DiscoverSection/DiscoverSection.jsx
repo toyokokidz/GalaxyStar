@@ -51,60 +51,41 @@ const SplitSection = () => {
 
   useEffect(() => {
     const section = sectionRef.current;
-
+  
     const handleScroll = (e) => {
-      if (!isLocked.current || isAnimating.current) return;
-      
-      const direction = e.type === 'wheel' ? Math.sign(e.deltaY) : 
-                      Math.sign(touchStartY.current - e.touches[0].clientY);
-      
+      if (isAnimating.current) return;
+  
+      const direction = e.type === 'wheel' 
+        ? Math.sign(e.deltaY) 
+        : Math.sign(touchStartY.current - e.touches[0].clientY);
+  
       const newIndex = activeIndex + direction;
-      if (newIndex < 0 || newIndex >= CONTENT.length) {
-        isLocked.current = false;
-        document.body.style.overflow = '';
-        return;
-      }
-
+      if (newIndex < 0 || newIndex >= CONTENT.length) return;
+  
+      e.preventDefault();
       isAnimating.current = true;
       setActiveIndex(newIndex);
-
+  
       setTimeout(() => {
         isAnimating.current = false;
       }, 800);
     };
-
+  
     const handleTouchStart = (e) => {
       touchStartY.current = e.touches[0].clientY;
     };
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        isLocked.current = entry.isIntersecting;
-        if (entry.isIntersecting) {
-          document.body.style.overflow = 'hidden';
-          window.addEventListener('wheel', handleScroll, { passive: false });
-          window.addEventListener('touchstart', handleTouchStart, { passive: false });
-          window.addEventListener('touchmove', handleScroll, { passive: false });
-        } else {
-          document.body.style.overflow = '';
-          window.removeEventListener('wheel', handleScroll);
-          window.removeEventListener('touchstart', handleTouchStart);
-          window.removeEventListener('touchmove', handleScroll);
-        }
-      },
-      { threshold: 0.7 }
-    );
-
-    if (section) observer.observe(section);
-
+  
+    section?.addEventListener('wheel', handleScroll, { passive: false });
+    section?.addEventListener('touchstart', handleTouchStart, { passive: false });
+    section?.addEventListener('touchmove', handleScroll, { passive: false });
+  
     return () => {
-      if (section) observer.unobserve(section);
-      window.removeEventListener('wheel', handleScroll);
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchmove', handleScroll);
-      document.body.style.overflow = '';
+      section?.removeEventListener('wheel', handleScroll);
+      section?.removeEventListener('touchstart', handleTouchStart);
+      section?.removeEventListener('touchmove', handleScroll);
     };
   }, [activeIndex]);
+  
 
   return (
     <section 
