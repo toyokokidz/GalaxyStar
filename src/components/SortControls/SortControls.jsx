@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from 'react'; // Добавьте этот импорт
 import Arrow from '../../assets/Arrow.svg';
 import styles from './SortControls.module.scss';
 
@@ -23,13 +23,14 @@ const SortControls = ({
                           onSortChange,
                           sortOptions = DEFAULT_SORT_OPTIONS,
                           defaultSort = SORT_VALUES.RELEVANCE,
+                          isOpen,
+                          onOpenChange,
                       }) => {
     const [sortOption, setSortOption] = useState(defaultSort);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const handleSortChange = (option) => {
         setSortOption(option);
-        setIsDropdownOpen(false);
+        onOpenChange(false);
 
         const sortedProducts = [...products].sort((a, b) => {
             if (option === SORT_VALUES.RELEVANCE) return a.id - b.id;
@@ -55,12 +56,12 @@ const SortControls = ({
             <div className={styles.sortControls}>
                 <button
                     className={styles.sortButton}
-                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    onClick={() => onOpenChange(!isOpen)}
                 >
                     <span>{getCurrentLabel()}</span>
-                    <Arrow className={`${styles.arrow} ${isDropdownOpen ? styles.rotate : ''}`} />
+                    <Arrow className={`${styles.arrow} ${isOpen ? styles.rotate : ''}`} />
                 </button>
-                {isDropdownOpen && (
+                {isOpen && (
                     <div className={styles.dropdown}>
                         {sortOptions.map((option) => (
                             <div
