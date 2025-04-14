@@ -128,6 +128,8 @@ $border-radius: 12px;
   box-sizing: border-box;
   background: transparent;
   width: 100%;
+  position: relative;
+  z-index: 2;
 }
 
 .textContentSale {
@@ -176,6 +178,8 @@ $border-radius: 12px;
   cursor: pointer;
   transition: all $transition-duration ease;
   box-shadow: 0 4px 15px rgba($color-primary, 0.3);
+  position: relative;
+  z-index: 3;
 
   &:hover {
     transform: translateY(-2px);

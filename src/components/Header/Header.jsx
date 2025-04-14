@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import styles from './Header.module.scss'
 import AuthModal from '../Auth/AuthModal'
-import { useCart } from '../../context/CartContext'
+import { useCart } from '../../context/CartContext.jsx'
 
 const Header = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
