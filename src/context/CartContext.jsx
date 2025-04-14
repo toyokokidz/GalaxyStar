@@ -11,28 +11,29 @@ export const useCart = () => {
 };
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState(() => {
-    if (typeof window !== 'undefined') {
-      try {
-        const savedCart = localStorage.getItem('cart');
-        return savedCart ? JSON.parse(savedCart) : [];
-      } catch (error) {
-        console.error('Error loading cart from localStorage:', error);
-        return [];
-      }
-    }
-    return [];
-  });
+  const [cartItems, setCartItems] = useState([]);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    try {
+      const savedCart = localStorage.getItem('cart');
+      setCartItems(savedCart ? JSON.parse(savedCart) : []);
+    } catch (error) {
+      console.error('Error loading cart from localStorage:', error);
+      setCartItems([]);
+    }
+    setIsInitialized(true);
+  }, []);
+
+  useEffect(() => {
+    if (isInitialized) {
       try {
         localStorage.setItem('cart', JSON.stringify(cartItems));
       } catch (error) {
         console.error('Error saving cart to localStorage:', error);
       }
     }
-  }, [cartItems]);
+  }, [cartItems, isInitialized]);
 
   const addToCart = (product) => {
     setCartItems(prevItems => {
@@ -84,18 +85,40 @@ export const CartProvider = ({ children }) => {
     return cartItems.reduce((total, item) => total + (item.quantity || 1), 0);
   };
 
-  const contextValue = {
+  const incrementQuantity = (productId) => {
+    setCartItems(prevItems =>
+      prevItems.map(item =>
+        item.id === productId
+          ? { ...item, quantity: (item.quantity || 1) + 1 }
+          : item
+      )
+    );
+  };
+
+  const decrementQuantity = (productId) => {
+    setCartItems(prevItems =>
+      prevItems.map(item =>
+        item.id === productId
+          ? { ...item, quantity: Math.max(1, (item.quantity || 1) - 1) }
+          : item
+      )
+    );
+  };
+
+  const value = {
     cartItems,
     addToCart,
     removeFromCart,
     updateQuantity,
+    incrementQuantity,
+    decrementQuantity,
     clearCart,
     getCartTotal,
     getCartItemsCount
   };
 
   return (
-    <CartContext.Provider value={contextValue}>
+    <CartContext.Provider value={value}>
       {children}
     </CartContext.Provider>
   );

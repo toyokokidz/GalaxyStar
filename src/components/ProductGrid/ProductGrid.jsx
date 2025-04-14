@@ -1,9 +1,14 @@
+import React from 'react';
 import Link from 'next/link';
 import styles from './ProductGrid.module.scss';
-import { useCart } from '../../context/CartContext';
+import { useCart } from '../../context/CartContext.jsx';
 
 const ProductGrid = ({ products }) => {
   const { addToCart } = useCart();
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+  };
 
   return (
       <div className={styles.grid}>
@@ -31,7 +36,7 @@ const ProductGrid = ({ products }) => {
                 </div>
                 <button
                     className={styles.addToCartButton}
-                    onClick={() => addToCart(product)}
+                    onClick={() => handleAddToCart(product)}
                 >
                   Add to Cart
                 </button>

@@ -1,7 +1,8 @@
+import React from 'react';
 import { useState } from 'react';
 import Link from 'next/link'
 import styles from './GamingSwitches.module.scss'
-import { useCart } from '../../context/CartContext'
+import { useCart } from '../../context/CartContext.jsx'
 
 const products = [
     {
