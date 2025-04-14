@@ -1,0 +1,166 @@
+// Используем те же переменные, что и в SortControls
+$color-white: #FFFFFF;
+$color-text-light: rgba(255, 255, 255, 0.7);
+$font-size-base: 1rem;
+$transition-duration: 0.3s;
+$border-radius: 12px;
+
+.filterContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.filterButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  font-size: $font-size-base;
+  color: $color-text-light;
+  cursor: pointer;
+  transition: all $transition-duration ease;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.slider {
+  transition: transform $transition-duration ease;
+  text-align: center;
+}
+
+.filterDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  min-width: 250px;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.filterGroup {
+  margin-bottom: 16px;
+
+  .filterGroupTitle {
+    margin: 0 0 8px 0;
+    font-size: $font-size-base;
+    color: $color-white;
+    font-weight: normal;
+    opacity: 0.8;
+  }
+
+  .filterLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: $color-text-light;
+    cursor: pointer;
+    transition: color $transition-duration ease;
+
+    &:hover {
+      color: $color-white;
+    }
+
+    .filterCheckbox {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+    }
+  }
+}
+
+.rangeInputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .rangeInput {
+    width: 60px;
+    padding: 6px 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    color: $color-white;
+    font-size: $font-size-base;
+    transition: all $transition-duration ease;
+
+    &:focus {
+      outline: none;
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+  }
+
+  .rangeSeparator {
+    color: $color-text-light;
+  }
+}
+
+.filterSelect {
+  width: 100%;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: $color-white;
+  font-size: $font-size-base;
+  cursor: pointer;
+  transition: all $transition-duration ease;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  option {
+    background: rgba(0, 0, 0, 0.9);
+  }
+}
+
+.filterActions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+
+  .filterApplyButton, .filterResetButton {
+    flex: 1;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: none;
+    font-size: $font-size-base;
+    cursor: pointer;
+    transition: all $transition-duration ease;
+  }
+
+  .filterApplyButton {
+    background: rgba(0, 112, 243, 0.9);
+    color: white;
+
+    &:hover {
+      background: rgba(0, 97, 213, 0.9);
+    }
+  }
+
+  .filterResetButton {
+    background: rgba(255, 255, 255, 0.1);
+    color: $color-text-light;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: $color-white;
+    }
+  }
+}
