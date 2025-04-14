@@ -5,7 +5,53 @@
     "price": "$49.95",
     "tag": "NEW ARRIVAL",
     "image": "/images/galaxy-charger-white.webp",
-    "link": "/accessoires/charger-white"
+    "link": "/accessoires/charger-white",
+    "description": {
+      "title": "Alpha 65W GaN Fast Wall Charger",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Efficient Charging Meets Futuristic Design"
+        },
+        {
+          "type": "header",
+          "text": "Key Features:"
+        },
+        {
+          "type": "feature",
+          "name": "Three-Port Design",
+          "value": "Charge multiple devices simultaneously with 2 USB-C ports and 1 USB-A port"
+        },
+        {
+          "type": "feature",
+          "name": "GaN Technology",
+          "value": "Faster, more efficient charging with less heat"
+        },
+        {
+          "type": "feature",
+          "name": "Transforming Design",
+          "value": "Foldable design makes it compact for travel"
+        },
+        {
+          "type": "feature",
+          "name": "Various Plug Options",
+          "value": "Includes US, UK, and EU plugs"
+        },
+        {
+          "type": "feature",
+          "name": "Wide Compatibility",
+          "value": "Works with iPhone, iPad, Samsung, Nintendo Switch"
+        },
+        {
+          "type": "header",
+          "text": "Why Choose It:"
+        },
+        {
+          "type": "paragraph",
+          "text": "Engineered to deliver consistent, reliable power that charges quickly while maintaining battery health"
+        }
+      ]
+    }
   },
   {
     "id": 2,
@@ -13,7 +59,53 @@
     "price": "$49.95",
     "tag": "NEW ARRIVAL",
     "image": "/images/galaxy-charger-yellow.webp",
-    "link": "/accessoires/charger-yellow"
+    "link": "/accessoires/charger-yellow",
+    "description": {
+      "title": "Alpha 65W GaN Fast Wall Charger (Yellow)",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Efficient Charging Meets Futuristic Design"
+        },
+        {
+          "type": "header",
+          "text": "Key Features:"
+        },
+        {
+          "type": "feature",
+          "name": "Three-Port Design",
+          "value": "Charge multiple devices simultaneously"
+        },
+        {
+          "type": "feature",
+          "name": "GaN Technology",
+          "value": "Faster charging with less heat"
+        },
+        {
+          "type": "feature",
+          "name": "Compact Foldable Design",
+          "value": "Perfect for travel"
+        },
+        {
+          "type": "feature",
+          "name": "International Plugs",
+          "value": "US, UK, and EU options included"
+        },
+        {
+          "type": "feature",
+          "name": "Universal Compatibility",
+          "value": "Works with most devices"
+        },
+        {
+          "type": "header",
+          "text": "Why Choose It:"
+        },
+        {
+          "type": "paragraph",
+          "text": "Premium charging solution that's both powerful and portable"
+        }
+      ]
+    }
   },
   {
     "id": 3,
@@ -21,28 +113,202 @@
     "price": "$39.95",
     "tag": "NEW ARRIVAL",
     "image": "/images/galaxy-keycaps-cyberpunk.webp",
-    "link": "/accessoires/keycaps-cyberpunk"
+    "link": "/accessoires/keycaps-cyberpunk",
+    "description": {
+      "title": "Cyberpunk Keycap Set",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Five-Sided Thermal Sublimation, High Durability"
+        },
+        {
+          "type": "header",
+          "text": "Key Features:"
+        },
+        {
+          "type": "feature",
+          "name": "Wide Compatibility",
+          "value": "Fits all keyboard layouts"
+        },
+        {
+          "type": "feature",
+          "name": "High Translucence",
+          "value": "Perfect for RGB lighting"
+        },
+        {
+          "type": "feature",
+          "name": "Durable & Sweat-Resistant",
+          "value": "PBT + PC materials"
+        },
+        {
+          "type": "feature",
+          "name": "ASA Profile",
+          "value": "Ergonomic height for comfort"
+        },
+        {
+          "type": "feature",
+          "name": "Customizable",
+          "value": "Includes bonus personalized keycaps"
+        },
+        {
+          "type": "header",
+          "text": "Why Choose It:"
+        },
+        {
+          "type": "paragraph",
+          "text": "Combines durability, beauty and versatility for keyboard enthusiasts"
+        }
+      ]
+    }
   },
   {
     "id": 4,
     "name": "Galaxy Wireless Speaker Black",
     "price": "$199.95",
     "image": "/images/galaxy-speaker-black.webp",
-    "link": "/accessoires/galaxy-dongle"
+    "link": "/accessoires/galaxy-speaker",
+    "description": {
+      "title": "GravaStar Mars Pro Speaker",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Futuristic Design Meets Superior Sound"
+        },
+        {
+          "type": "header",
+          "text": "Key Features:"
+        },
+        {
+          "type": "feature",
+          "name": "Dual Speaker System",
+          "value": "With passive bass radiator"
+        },
+        {
+          "type": "feature",
+          "name": "Sci-Fi Design",
+          "value": "Unique aesthetic statement piece"
+        },
+        {
+          "type": "feature",
+          "name": "Bluetooth 5.0",
+          "value": "High-quality wireless connectivity"
+        },
+        {
+          "type": "feature",
+          "name": "RGB Lights",
+          "value": "Six dynamic lighting effects"
+        },
+        {
+          "type": "feature",
+          "name": "15 Hour Battery",
+          "value": "For all-day use"
+        },
+        {
+          "type": "header",
+          "text": "Why Choose It:"
+        },
+        {
+          "type": "paragraph",
+          "text": "More than a speaker - a work of art with premium audio quality"
+        }
+      ]
+    }
   },
   {
     "id": 5,
     "name": "Galaxy Mousepad XL",
     "price": "$29.95",
     "image": "/images/anime-mousepad.jpg",
-    "link": "/accessoires/galaxy-mousepad-xl"
+    "link": "/accessoires/galaxy-mousepad-xl",
+    "description": {
+      "title": "Special Mouse Pad for Mercury Gaming Mouse",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Premium Surface for Precision Gaming"
+        },
+        {
+          "type": "header",
+          "text": "Key Features:"
+        },
+        {
+          "type": "feature",
+          "name": "Dimensions",
+          "value": "11.81 x 9.84 x 0.12 inches"
+        },
+        {
+          "type": "feature",
+          "name": "Optimized Surface",
+          "value": "Perfect tracking for gaming mice"
+        },
+        {
+          "type": "feature",
+          "name": "Non-Slip Base",
+          "value": "Stays firmly in place"
+        },
+        {
+          "type": "feature",
+          "name": "Durable Materials",
+          "value": "Long-lasting performance"
+        },
+        {
+          "type": "header",
+          "text": "Why Choose It:"
+        },
+        {
+          "type": "paragraph",
+          "text": "The ideal surface for competitive gaming precision"
+        }
+      ]
+    }
   },
   {
     "id": 6,
     "name": "Galaxy M1 Pro 4K Wireless Dongle",
     "price": "$24.95",
     "image": "/images/galaxy-dongle.jpg",
-    "link": "/accessoires/galaxy-dongle"
+    "link": "/accessoires/galaxy-dongle",
+    "description": {
+      "title": "Mercury M1 Pro 4K Wireless Dongle",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Enhance Your Gaming Performance"
+        },
+        {
+          "type": "header",
+          "text": "Key Features:"
+        },
+        {
+          "type": "feature",
+          "name": "4000Hz Polling Rate",
+          "value": "Beyond standard 1000Hz"
+        },
+        {
+          "type": "feature",
+          "name": "Ultra-Low Latency",
+          "value": "For competitive gaming"
+        },
+        {
+          "type": "feature",
+          "name": "Compact Design",
+          "value": "Easy to carry"
+        },
+        {
+          "type": "feature",
+          "name": "Compatibility",
+          "value": "Works with Mercury M1 Pro models"
+        },
+        {
+          "type": "header",
+          "text": "Why Choose It:"
+        },
+        {
+          "type": "paragraph",
+          "text": "Unlock the full potential of your Mercury gaming mouse"
+        }
+      ]
+    }
   },
   {
     "id": 7,
@@ -51,6 +317,52 @@
     "price_old": "$12.99",
     "discount": "Save 23%",
     "image": "/images/galaxy-wrist-pad.webp",
-    "link": "/accessoires/wrist-pad"
+    "link": "/accessoires/wrist-pad",
+    "description": {
+      "title": "Keyboard Wrist Rest Pad",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Ergonomic Comfort for Long Sessions"
+        },
+        {
+          "type": "header",
+          "text": "Key Features:"
+        },
+        {
+          "type": "feature",
+          "name": "Material",
+          "value": "ABS base with PU leather surface"
+        },
+        {
+          "type": "feature",
+          "name": "Dimensions",
+          "value": "32.5 x 72 mm"
+        },
+        {
+          "type": "feature",
+          "name": "Weight",
+          "value": "153g - Perfect balance"
+        },
+        {
+          "type": "feature",
+          "name": "Non-Slip Base",
+          "value": "Stays securely in place"
+        },
+        {
+          "type": "feature",
+          "name": "Easy to Clean",
+          "value": "Maintains freshness"
+        },
+        {
+          "type": "header",
+          "text": "Why Choose It:"
+        },
+        {
+          "type": "paragraph",
+          "text": "Reduces strain during extended typing or gaming sessions"
+        }
+      ]
+    }
   }
 ]
