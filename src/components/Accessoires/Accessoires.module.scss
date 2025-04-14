@@ -66,3 +66,182 @@ $transition-duration: 0.3s;
   display: flex;
   gap: 10px;
 }
+
+.productPageContainer {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.breadcrumbs {
+  font-size: 14px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  a {
+    text-decoration: none;
+    color: #ffffff;
+  }
+  span {
+    color: #ffffff;
+  }
+}
+
+.productContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.imageSection {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.mainImageWrapper {
+  width: 100%;
+  max-width: 600px;
+}
+
+.infoSection {
+  flex: 1;
+  min-width: 300px;
+}
+
+.productTitle {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.priceSection {
+  margin-bottom: 20px;
+  .priceSale {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e60000;
+  }
+  .priceOriginal {
+    text-decoration: line-through;
+    color: #ffffff;
+    margin-left: 10px;
+  }
+  .price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+}
+
+.quantitySection {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  label {
+    margin-right: 10px;
+    color: #ffffff;
+  }
+  .quantitySelector {
+    display: flex;
+    align-items: center;
+    button {
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 18px;
+      &:hover {
+        background-color: #e0e0e0;
+      }
+    }
+    .quantityValue {
+      padding: 0 10px;
+      font-size: 18px;
+    }
+  }
+}
+
+.addToCartButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  background-color: #000000;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: #ffffff94;
+  }
+  &.inCart {
+    background-color: #ffffff;
+    cursor: not-allowed;
+  }
+}
+
+.descriptionSection {
+  margin-top: 30px;
+}
+
+.sectionTitle {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.descriptionContent {
+  font-size: 16px;
+  color: #ffffff;
+  .noDescription {
+    font-style: italic;
+    color: #ffffff;
+  }
+  .descriptionText {
+    margin-bottom: 10px;
+  }
+  .featureItem {
+    display: flex;
+    margin-bottom: 10px;
+    .featureName {
+      font-weight: bold;
+      margin-right: 5px;
+    }
+    .featureDetail {
+      color: #ffffff;
+    }
+  }
+  .featureHeader {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #ffffff;
+  }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+.loadingSpinner {
+  border: 4px solid #f3f3f3;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
