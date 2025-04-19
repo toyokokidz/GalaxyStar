@@ -1,3 +1,4 @@
+// FilterControls.jsx
 import { useState } from 'react';
 import Slider from '../../assets/Slider.svg';
 import styles from './FilterControls.module.scss';
@@ -10,19 +11,8 @@ const FilterControls = ({
                         }) => {
     const [filters, setFilters] = useState({
         priceRange: [0, 200],
-        inStock: false,
-        productType: ''
+        inStock: false
     });
-
-    const productTypes = [...new Set(products.map(product => {
-        if (product.name.includes('Charger')) return 'Charger';
-        if (product.name.includes('Keycaps')) return 'Keycaps';
-        if (product.name.includes('Speaker')) return 'Speaker';
-        if (product.name.includes('Mousepad')) return 'Mousepad';
-        if (product.name.includes('Dongle')) return 'Dongle';
-        if (product.name.includes('Wrist Rest')) return 'Wrist Rest';
-        return 'Other';
-    }))];
 
     const handleFilterChange = (name, value) => {
         setFilters(prev => ({
@@ -34,21 +24,9 @@ const FilterControls = ({
     const applyFilters = () => {
         const filtered = products.filter(product => {
             const price = parseFloat((product.price_sale || product.price).replace('$', ''));
-
             const priceMatch = price >= filters.priceRange[0] && price <= filters.priceRange[1];
-            const stockMatch = !filters.inStock || parseFloat(price) > 0;
-
-            let typeMatch = true;
-            if (filters.productType) {
-                if (filters.productType === 'Charger') typeMatch = product.name.includes('Charger');
-                else if (filters.productType === 'Keycaps') typeMatch = product.name.includes('Keycaps');
-                else if (filters.productType === 'Speaker') typeMatch = product.name.includes('Speaker');
-                else if (filters.productType === 'Mousepad') typeMatch = product.name.includes('Mousepad');
-                else if (filters.productType === 'Dongle') typeMatch = product.name.includes('Dongle');
-                else if (filters.productType === 'Wrist Rest') typeMatch = product.name.includes('Wrist Rest');
-            }
-
-            return priceMatch && stockMatch && typeMatch;
+            const stockMatch = !filters.inStock || price > 0;
+            return priceMatch && stockMatch;
         });
 
         onFilterChange(filtered);
@@ -58,8 +36,7 @@ const FilterControls = ({
     const resetFilters = () => {
         setFilters({
             priceRange: [0, 200],
-            inStock: false,
-            productType: ''
+            inStock: false
         });
         onFilterChange(products);
         onOpenChange(false);
@@ -110,20 +87,6 @@ const FilterControls = ({
                             />
                             In Stock Only
                         </label>
-                    </div>
-
-                    <div className={styles.filterGroup}>
-                        <h4 className={styles.filterGroupTitle}>Product Type</h4>
-                        <select
-                            className={styles.filterSelect}
-                            value={filters.productType}
-                            onChange={(e) => handleFilterChange('productType', e.target.value)}
-                        >
-                            <option value="">All Types</option>
-                            {productTypes.map(type => (
-                                <option key={type} value={type}>{type}</option>
-                            ))}
-                        </select>
                     </div>
 
                     <div className={styles.filterActions}>
