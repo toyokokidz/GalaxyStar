@@ -5,7 +5,83 @@
     "price": "$199.95",
     "image": "/images/galaxy-keyboard-pro.webp",
     "tag": "NEW ARRIVAL",
-    "link": "/keyboard/pro-mechanical-black"
+    "link": "/keyboard/pro-mechanical-black",
+    "description": {
+      "title": "Galaxy Pro Mechanical Keyboard (Black Edition)",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Premium mechanical keyboard with advanced features for professionals and enthusiasts"
+        },
+        {
+          "type": "header",
+          "text": "Design & Build"
+        },
+        {
+          "type": "feature",
+          "name": "Material",
+          "value": "Matte Black Aluminum Alloy"
+        },
+        {
+          "type": "feature",
+          "name": "Size",
+          "value": "415*178.6*57.6 mm"
+        },
+        {
+          "type": "feature",
+          "name": "Weight",
+          "value": "1.18kg"
+        },
+        {
+          "type": "feature",
+          "name": "Layout",
+          "value": "Streamlined 75% layout with 79 keys + Control Knob"
+        },
+        {
+          "type": "feature",
+          "name": "Keycaps",
+          "value": "Pudding PBT Keycaps with Dye SublimationKey Art"
+        },
+        {
+          "type": "header",
+          "text": "Technical Specifications"
+        },
+        {
+          "type": "feature",
+          "name": "Switches",
+          "value": "Custom GravaStar x Kailh Speedy Mint linear (45gf actuation force)"
+        },
+        {
+          "type": "feature",
+          "name": "Construction",
+          "value": "Gasket-mounted design with 5 layers of sound dampening foam"
+        },
+        {
+          "type": "feature",
+          "name": "Lighting",
+          "value": "Dual independent RGB backlighting systems"
+        },
+        {
+          "type": "feature",
+          "name": "Battery",
+          "value": "8000mAh rechargeable battery"
+        },
+        {
+          "type": "feature",
+          "name": "Connectivity",
+          "value": "Tri-mode (wired, Bluetooth, 2.4GHz wireless)"
+        },
+        {
+          "type": "header",
+          "text": "Included Accessories"
+        },
+        {
+          "type": "feature",
+          "name": "Package Contents",
+          "value": "Keyboard, Receiver, USB Cable, Puller, Cleaning Brush, 4 Extra Switches, Manual, Cleaning Cloth"
+        }
+      ]
+    }
   },
   {
     "id": 2,
@@ -13,7 +89,73 @@
     "price": "$199.95",
     "tag": "NEW ARRIVAL",
     "image": "/images/galaxy-keyboard-yellow.webp",
-    "link": "/keyboard/pro-mechanical-yellow"
+    "link": "/keyboard/pro-mechanical-yellow",
+    "description": {
+      "title": "Galaxy Pro Mechanical Keyboard (Yellow Edition)",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "High-performance mechanical keyboard with premium yellow finish"
+        },
+        {
+          "type": "header",
+          "text": "Design & Build"
+        },
+        {
+          "type": "feature",
+          "name": "Size",
+          "value": "415*178.6*57.6 mm"
+        },
+        {
+          "type": "feature",
+          "name": "Weight",
+          "value": "1.18kg"
+        },
+        {
+          "type": "feature",
+          "name": "Layout",
+          "value": "Streamlined 75% layout with 79 keys + Control Knob"
+        },
+        {
+          "type": "feature",
+          "name": "Construction",
+          "value": "Sturdy metal construction with gasket-mounted design"
+        },
+        {
+          "type": "header",
+          "text": "Technical Specifications"
+        },
+        {
+          "type": "feature",
+          "name": "Switches",
+          "value": "Custom GravaStar x Kailh Speedy Mint linear (45gf actuation)"
+        },
+        {
+          "type": "feature",
+          "name": "Sound Dampening",
+          "value": "5 layers of premium foam for superior acoustics"
+        },
+        {
+          "type": "feature",
+          "name": "Lighting",
+          "value": "Customizable RGB effects with dual lighting systems"
+        },
+        {
+          "type": "feature",
+          "name": "Power",
+          "value": "8000mAh battery with tri-mode connectivity"
+        },
+        {
+          "type": "header",
+          "text": "What's Included"
+        },
+        {
+          "type": "feature",
+          "name": "Package",
+          "value": "Full set with extra switches and accessories (same as black version)"
+        }
+      ]
+    }
   },
   {
     "id": 3,
@@ -21,14 +163,116 @@
     "price": "$39.95",
     "tag": "NEW ARRIVAL",
     "image": "/images/galaxy-keycaps-cyberpunk.webp",
-    "link": "/accessoires/keycaps-cyberpunk"
+    "link": "/accessoires/keycaps-cyberpunk",
+    "description": {
+      "title": "Cyberpunk Keycap Set",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Five-Sided Thermal Sublimation, High Durability, and Stunning Translucence (Keyboard Not Included)"
+        },
+        {
+          "type": "header",
+          "text": "Key Features"
+        },
+        {
+          "type": "feature",
+          "name": "Compatibility",
+          "value": "Fits all keyboard layouts"
+        },
+        {
+          "type": "feature",
+          "name": "Material",
+          "value": "PBT + PC blend for durability"
+        },
+        {
+          "type": "feature",
+          "name": "Profile",
+          "value": "ASA height for ergonomic comfort"
+        },
+        {
+          "type": "feature",
+          "name": "Technology",
+          "value": "Five-sided thermal sublimation printing"
+        },
+        {
+          "type": "feature",
+          "name": "Lighting",
+          "value": "High translucence for RGB effects"
+        },
+        {
+          "type": "header",
+          "text": "Why Choose These Keycaps"
+        },
+        {
+          "type": "paragraph",
+          "text": "Upgrade your keyboard with these premium keycaps that combine durability, vibrant cyberpunk aesthetics, and perfect RGB light diffusion for an immersive typing experience."
+        }
+      ]
+    }
   },
   {
     "id": 4,
     "name": "Galaxy Mechanical Keyboard Black",
     "price": "$159.99",
     "image": "/images/galaxy-keyboard-black.webp",
-    "link": "/keyboard/mechanical-black"
+    "link": "/keyboard/mechanical-black",
+    "description": {
+      "title": "Galaxy Standard Mechanical Keyboard",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Premium entry-level mechanical keyboard with essential features"
+        },
+        {
+          "type": "header",
+          "text": "Design Specifications"
+        },
+        {
+          "type": "feature",
+          "name": "Dimensions",
+          "value": "343*156*46 mm"
+        },
+        {
+          "type": "feature",
+          "name": "Weight",
+          "value": "1.06kg"
+        },
+        {
+          "type": "feature",
+          "name": "Frame",
+          "value": "Aluminum alloy construction"
+        },
+        {
+          "type": "header",
+          "text": "Technical Features"
+        },
+        {
+          "type": "feature",
+          "name": "Switches",
+          "value": "GalaxyStar x Kailh Cheery Pink linear (40gf actuation)"
+        },
+        {
+          "type": "feature",
+          "name": "Construction",
+          "value": "Gasket-mounted PC plate with sound dampening"
+        },
+        {
+          "type": "feature",
+          "name": "Battery",
+          "value": "8000mAh with tri-mode connectivity"
+        },
+        {
+          "type": "header",
+          "text": "Included Accessories"
+        },
+        {
+          "type": "feature",
+          "name": "Contents",
+          "value": "Full accessory package including extra switches"
+        }
+      ]
+    }
   },
   {
     "id": 5,
@@ -37,7 +281,62 @@
     "price_old": "$159.99",
     "discount": "Save 12%",
     "image": "/images/galaxy-keyboard-white.webp",
-    "link": "/keyboard/mechanical-white"
+    "link": "/keyboard/mechanical-white",
+    "description": {
+      "title": "Galaxy Compact Mechanical Keyboard (White)",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Sleek white mechanical keyboard with premium features at a discounted price"
+        },
+        {
+          "type": "header",
+          "text": "Physical Specifications"
+        },
+        {
+          "type": "feature",
+          "name": "Size",
+          "value": "343 x 156 x 46 mm"
+        },
+        {
+          "type": "feature",
+          "name": "Weight",
+          "value": "0.85kg"
+        },
+        {
+          "type": "feature",
+          "name": "Keycaps",
+          "value": "Double-shot PBT for durability"
+        },
+        {
+          "type": "header",
+          "text": "Technical Details"
+        },
+        {
+          "type": "feature",
+          "name": "Switches",
+          "value": "GravaStar x BSUN Linear (40gf actuation)"
+        },
+        {
+          "type": "feature",
+          "name": "Battery",
+          "value": "4000mAh rechargeable"
+        },
+        {
+          "type": "feature",
+          "name": "Lighting",
+          "value": "13 customizable RGB modes"
+        },
+        {
+          "type": "header",
+          "text": "Special Offer"
+        },
+        {
+          "type": "paragraph",
+          "text": "Get this premium white keyboard now at a 12% discount, including all standard accessories and extra switches."
+        }
+      ]
+    }
   },
   {
     "id": 6,
@@ -46,6 +345,61 @@
     "price_old": "$12.99",
     "discount": "Save 23%",
     "image": "/images/galaxy-wrist-pad.webp",
-    "link": "/accessoires/wrist-pad"
+    "link": "/accessoires/wrist-pad",
+    "description": {
+      "title": "Ergonomic Keyboard Wrist Rest",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Premium comfort for extended typing and gaming sessions"
+        },
+        {
+          "type": "header",
+          "text": "Product Details"
+        },
+        {
+          "type": "feature",
+          "name": "Materials",
+          "value": "ABS base with PU leather surface"
+        },
+        {
+          "type": "feature",
+          "name": "Dimensions",
+          "value": "32.5 x 72 mm"
+        },
+        {
+          "type": "feature",
+          "name": "Weight",
+          "value": "153g"
+        },
+        {
+          "type": "header",
+          "text": "Key Benefits"
+        },
+        {
+          "type": "feature",
+          "name": "Ergonomics",
+          "value": "Supports natural wrist alignment"
+        },
+        {
+          "type": "feature",
+          "name": "Stability",
+          "value": "Non-slip base keeps it secure"
+        },
+        {
+          "type": "feature",
+          "name": "Durability",
+          "value": "High-quality materials for long-term use"
+        },
+        {
+          "type": "header",
+          "text": "Special Offer"
+        },
+        {
+          "type": "paragraph",
+          "text": "Limited time offer - get 23% off this essential typing accessory"
+        }
+      ]
+    }
   }
 ]

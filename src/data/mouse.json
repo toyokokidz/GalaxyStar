@@ -5,7 +5,9 @@
     "price": "$89.99",
     "image": "/images/galaxy-mouse-black.jpg",
     "tag": "NEW ARRIVAL",
-    "link": "/mouse/galaxy-mouse-black"
+    "link": "/mouse/galaxy-mouse-black",
+    "title": "Galaxy Mouse Black",
+    "description": null
   },
   {
     "id": 2,
@@ -13,7 +15,54 @@
     "price": "$139.95",
     "image": "/images/galaxy-mouse-xpro.jpg",
     "tag": "NEW ARRIVAL",
-    "link": "/mouse/galaxy-mouse-xpro"
+    "link": "/mouse/galaxy-mouse-xpro",
+    "description": {
+      "title": "Galaxy X Pro 8K - Ultimate Gaming Mouse",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "8000Hz Performance Meets Cutting-Edge Technology Gaming Mouse"
+        },
+        {
+          "type": "header",
+          "text": "Technical Specifications"
+        },
+        {
+          "type": "feature",
+          "name": "Sensor",
+          "value": "PAW 3950 (32,000 DPI)"
+        },
+        {
+          "type": "feature",
+          "name": "Polling Rate",
+          "value": "8,000 Hz"
+        },
+        {
+          "type": "feature",
+          "name": "Weight",
+          "value": "49g magnesium alloy"
+        },
+        {
+          "type": "feature",
+          "name": "Battery Life",
+          "value": "Up to 29h (8K mode)"
+        },
+        {
+          "type": "header",
+          "text": "Premium Features"
+        },
+        {
+          "type": "feature",
+          "name": "Connectivity",
+          "value": "Tri-mode (BT/2.4G/wired)"
+        },
+        {
+          "type": "feature",
+          "name": "RGB",
+          "value": "Customizable lighting"
+        }
+      ]
+    }
   },
   {
     "id": 3,
@@ -21,7 +70,49 @@
     "price": "$109.95",
     "image": "/images/galaxy-mouse-x.jpg",
     "tag": "NEW ARRIVAL",
-    "link": "/mouse/galaxy-mouse-x"
+    "link": "/mouse/galaxy-mouse-x",
+    "description": {
+      "title": "Galaxy X - Ultra-Lightweight Gaming Mouse",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Magnesium alloy construction with advanced sensor technology"
+        },
+        {
+          "type": "header",
+          "text": "Key Specifications"
+        },
+        {
+          "type": "feature",
+          "name": "Material",
+          "value": "0.8mm magnesium alloy"
+        },
+        {
+          "type": "feature",
+          "name": "Sensor",
+          "value": "PAW 3950 (32,000 DPI)"
+        },
+        {
+          "type": "feature",
+          "name": "Connectivity",
+          "value": "Tri-mode (BT/2.4G/wired)"
+        },
+        {
+          "type": "header",
+          "text": "Gaming Features"
+        },
+        {
+          "type": "feature",
+          "name": "Buttons",
+          "value": "5 programmable"
+        },
+        {
+          "type": "feature",
+          "name": "Battery",
+          "value": "Up to 83h (BT mode)"
+        }
+      ]
+    }
   },
   {
     "id": 4,
@@ -29,21 +120,128 @@
     "price": "$89.99",
     "image": "/images/galaxy-mouse-yellow.jpg",
     "tag": "NEW ARRIVAL",
-    "link": "/mouse/galaxy-mouse-yellow"
+    "link": "/mouse/galaxy-mouse-yellow",
+    "description": {
+      "title": "Worn Edition-Yellow Gaming Mouse",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Hand-polished unique finish with premium performance"
+        },
+        {
+          "type": "header",
+          "text": "Design Features"
+        },
+        {
+          "type": "feature",
+          "name": "Construction",
+          "value": "Magnesium alloy (49g)"
+        },
+        {
+          "type": "feature",
+          "name": "Finish",
+          "value": "Hand-polished worn effect"
+        },
+        {
+          "type": "header",
+          "text": "Technical Specs"
+        },
+        {
+          "type": "feature",
+          "name": "Sensor",
+          "value": "PAW 3950 (32,000 DPI)"
+        },
+        {
+          "type": "feature",
+          "name": "Polling",
+          "value": "1,000Hz"
+        }
+      ]
+    }
   },
   {
     "id": 5,
     "name": "Galaxy M1 Pro Gunmetal Gray",
     "price": "$99.95",
     "image": "/images/galaxy-mouse-gunmetal.jpg",
-    "link": "/mouse/galaxy-mouse-gunmetal"
+    "link": "/mouse/galaxy-mouse-gunmetal",
+    "description": {
+      "title": "M1 Pro Gaming Mouse (Gunmetal)",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Precision, Performance, and Customization Redefined"
+        },
+        {
+          "type": "header",
+          "text": "Core Technologies"
+        },
+        {
+          "type": "feature",
+          "name": "Sensor",
+          "value": "PAW3395 (26,000 DPI)"
+        },
+        {
+          "type": "feature",
+          "name": "Polling",
+          "value": "4K Hz"
+        },
+        {
+          "type": "feature",
+          "name": "Weight",
+          "value": "88g magnesium alloy"
+        },
+        {
+          "type": "header",
+          "text": "Gaming Features"
+        },
+        {
+          "type": "feature",
+          "name": "RGB",
+          "value": "5 GLOWSYNC modes"
+        },
+        {
+          "type": "feature",
+          "name": "Buttons",
+          "value": "Programmable"
+        }
+      ]
+    }
   },
   {
     "id": 6,
     "name": "Galaxy M1 Pro Gradient Black",
     "price": "$99.95",
     "image": "/images/galaxy-mouse-gradient.jpg",
-    "link": "/mouse/galaxy-mouse-gradient"
+    "link": "/mouse/galaxy-mouse-gradient",
+    "description": {
+      "title": "M1 Pro Gaming Mouse (Gradient Black)",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Premium gradient finish with tournament-grade performance"
+        },
+        {
+          "type": "header",
+          "text": "Technical Highlights"
+        },
+        {
+          "type": "feature",
+          "name": "Dimensions",
+          "value": "124 x 64.5 x 39.5 mm"
+        },
+        {
+          "type": "feature",
+          "name": "Wireless",
+          "value": "TUROSPEED technology"
+        },
+        {
+          "type": "feature",
+          "name": "Receiver",
+          "value": "4K ultra-low latency"
+        }
+      ]
+    }
   },
   {
     "id": 7,
@@ -52,7 +250,44 @@
     "price_old": "$79.95",
     "discount": "Save 13%",
     "image": "/images/galaxy-mouse-stealth.jpg",
-    "link": "/mouse/galaxy-mouse-stealth"
+    "link": "/mouse/galaxy-mouse-stealth",
+    "description": {
+      "title": "Mercury M2 - Stealth Black Edition",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Hollowed-out design with premium PAW3395 sensor"
+        },
+        {
+          "type": "header",
+          "text": "Key Features"
+        },
+        {
+          "type": "feature",
+          "name": "Weight",
+          "value": "79g"
+        },
+        {
+          "type": "feature",
+          "name": "RGB",
+          "value": "5 dynamic modes"
+        },
+        {
+          "type": "header",
+          "text": "Performance"
+        },
+        {
+          "type": "feature",
+          "name": "DPI",
+          "value": "Up to 26,000"
+        },
+        {
+          "type": "feature",
+          "name": "Buttons",
+          "value": "5 programmable"
+        }
+      ]
+    }
   },
   {
     "id": 8,
@@ -61,7 +296,44 @@
     "price_old": "$79.95",
     "discount": "Save 13%",
     "image": "/images/galaxy-mouse-transparent.jpg",
-    "link": "/mouse/galaxy-mouse-transparent"
+    "link": "/mouse/galaxy-mouse-transparent",
+    "description": {
+      "title": "Mercury M2 - Transparent Edition",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Futuristic transparent design with pro-grade performance"
+        },
+        {
+          "type": "header",
+          "text": "Design Highlights"
+        },
+        {
+          "type": "feature",
+          "name": "Construction",
+          "value": "Hollowed-out transparent"
+        },
+        {
+          "type": "feature",
+          "name": "Weight",
+          "value": "79g"
+        },
+        {
+          "type": "header",
+          "text": "Technical Specs"
+        },
+        {
+          "type": "feature",
+          "name": "Sensor",
+          "value": "PAW3395"
+        },
+        {
+          "type": "feature",
+          "name": "Polling",
+          "value": "1,000Hz"
+        }
+      ]
+    }
   },
   {
     "id": 9,
@@ -70,7 +342,44 @@
     "price_old": "$129.95",
     "discount": "Save 23%",
     "image": "/images/galaxy-mouse-smist.jpg",
-    "link": "/mouse/galaxy-mouse-smist"
+    "link": "/mouse/galaxy-mouse-smist",
+    "description": {
+      "title": "M1 Pro - Battle Worn Edition",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Unique hand-finished magnesium alloy with 4K performance"
+        },
+        {
+          "type": "header",
+          "text": "Premium Features"
+        },
+        {
+          "type": "feature",
+          "name": "Material",
+          "value": "Battle-worn magnesium"
+        },
+        {
+          "type": "feature",
+          "name": "Cooling",
+          "value": "Hollowed-out design"
+        },
+        {
+          "type": "header",
+          "text": "Gaming Tech"
+        },
+        {
+          "type": "feature",
+          "name": "Polling",
+          "value": "4K Hz"
+        },
+        {
+          "type": "feature",
+          "name": "Software",
+          "value": "Full customization"
+        }
+      ]
+    }
   },
   {
     "id": 10,

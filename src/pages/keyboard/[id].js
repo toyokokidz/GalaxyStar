@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '../../context/CartContext';
-import accessoriesData from '../../data/accessoires.json';
+import keyboardData from '../../data/keyboard.json';
 import styles from '../../components/Accessoires/Accessoires.module.scss';
 
-const AccessoryPage = () => {
+const KeyboardPage = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [accessory, setAccessory] = useState(null);
+  const [keyboard, setKeyboard] = useState(null);
   const [loading, setLoading] = useState(true);
   const { addToCart, cartItems } = useCart();
   const [quantity, setQuantity] = useState(1);
@@ -18,16 +18,16 @@ const AccessoryPage = () => {
     if (!id) return;
 
     const timer = setTimeout(() => {
-      const foundAccessory = accessoriesData.find(item => 
+      const foundKeyboard = keyboardData.find(item => 
         item.id === parseInt(id) || item.link?.endsWith(id)
       );
       
-      if (!foundAccessory) {
+      if (!foundKeyboard) {
         router.push('/404'); 
         return;
       }
 
-      setAccessory(foundAccessory);
+      setKeyboard(foundKeyboard);
       setLoading(false);
     }, 300);
 
@@ -45,21 +45,21 @@ const AccessoryPage = () => {
   };
   
   const handleAddToCart = () => {
-    if (!accessory) return;
+    if (!keyboard) return;
     
     addToCart({
-      id: accessory.id,
-      name: accessory.name,
-      price: accessory.price_sale || accessory.price,
-      price_sale: accessory.price_sale,
-      price_old: accessory.price_old,
-      image: accessory.image,
+      id: keyboard.id,
+      name: keyboard.name,
+      price: keyboard.price_sale || keyboard.price,
+      price_sale: keyboard.price_sale,
+      price_old: keyboard.price_old,
+      image: keyboard.image,
       quantity,
-      category: 'accessories'
+      category: 'keyboard'
     });
   };
 
-  if (loading || !accessory) {
+  if (loading || !keyboard) {
     return (
       <div className={styles.loading}>
         <div className={styles.loadingSpinner}></div>
@@ -69,21 +69,21 @@ const AccessoryPage = () => {
   }
 
   const renderDescription = () => {
-    if (!accessory.description) {
+    if (!keyboard.description) {
       return <p className={styles.noDescription}>No description available</p>;
     }
 
-    if (typeof accessory.description === 'string') {
+    if (typeof keyboard.description === 'string') {
       return (
         <div className={styles.descriptionContent}>
-          <p>{accessory.description}</p>
+          <p>{keyboard.description}</p>
         </div>
       );
     }
 
     return (
       <div className={styles.descriptionContent}>
-        {accessory.description.content?.map((item, index) => {
+        {keyboard.description.content?.map((item, index) => {
           switch (item.type) {
             case 'paragraph':
               return <p key={index} className={styles.descriptionText}>{item.text}</p>;
@@ -110,17 +110,17 @@ const AccessoryPage = () => {
         <Link href="/" passHref>
           Home
         </Link> &gt; 
-        <Link href="/accessoires" passHref>
-          Accessories
+        <Link href="/keyboard" passHref>
+          Keyboard
         </Link> &gt; 
-        <span>{accessory.name}</span>
+        <span>{keyboard.name}</span>
       </div>
       <div className={styles.productContainer}>
         <div className={styles.imageSection}>
           <div className={styles.mainImageWrapper}>
             <Image
-              src={accessory.image}
-              alt={accessory.description?.title + ' ' + accessory.name}
+              src={keyboard.image}
+              alt={keyboard.description?.title + ' ' + keyboard.name}
               width={600}
               height={600}
               layout="responsive"
@@ -132,19 +132,19 @@ const AccessoryPage = () => {
 
         <div className={styles.infoSection}>
           <h1 className={styles.productTitle}>
-            {accessory.title || accessory.name}
+            {keyboard.description?.title}
           </h1>
           
           <div className={styles.priceSection}>
-            {accessory.price_sale ? (
+            {keyboard.price_sale ? (
               <>
-                <span className={styles.priceSale}>{accessory.price_sale}</span>
-                {accessory.price_old && (
-                  <span className={styles.priceOriginal}>{accessory.price_old}</span>
+                <span className={styles.priceSale}>{keyboard.price_sale}</span>
+                {keyboard.price_old && (
+                  <span className={styles.priceOriginal}>{keyboard.price_old}</span>
                 )}
               </>
             ) : (
-              <span className={styles.price}>{accessory.price}</span>
+              <span className={styles.price}>{keyboard.price}</span>
             )}
           </div>
           <div className={styles.quantitySection}>
@@ -182,4 +182,4 @@ const AccessoryPage = () => {
   );
 };
 
-export default AccessoryPage;
+export default KeyboardPage;
