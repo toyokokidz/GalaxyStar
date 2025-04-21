@@ -181,10 +181,34 @@ $border-radius: 12px;
   position: relative;
   z-index: 3;
 
+  &.outOfStock {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    box-shadow: none !important;
+    cursor: not-allowed;
+    pointer-events: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 60px;
+    }
+  }
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba($color-primary, 0.4);
     background: linear-gradient(135deg, lighten($color-primary, 5%), lighten($color-secondary, 5%));
+
+    &.outOfStock {
+      transform: none !important;
+      background: rgba(255, 255, 255, 0.1) !important;
+    }
   }
 
   &:active {
