@@ -1,14 +1,16 @@
+// Accessoires.jsx
 import { useState } from 'react';
-import styles from './Accessoires.module.scss'
+import styles from './Accessoires.module.scss';
 import accessoiresProducts from '../../data/accessoires.json';
 import SortControls from '../SortControls/SortControls';
 import FilterControls from '../FilterControls/FilterControls';
 import ProductGrid from "../ProductGrid/ProductGrid";
+import keyboardProducts from "../../data/keyboard.json";
 
 const Accessoires = () => {
     const [displayedProducts, setDisplayedProducts] = useState(accessoiresProducts);
     const [sortedProducts, setSortedProducts] = useState(accessoiresProducts);
-    const [openControl, setOpenControl] = useState(null); // 'sort' или 'filter'
+    const [openControl, setOpenControl] = useState(null);
 
     const handleFilterChange = (filteredProducts) => {
         setDisplayedProducts(filteredProducts);
@@ -37,7 +39,23 @@ const Accessoires = () => {
                         />
                     </div>
                 </div>
-                <ProductGrid products={sortedProducts} />
+                {sortedProducts.length > 0 ? (
+                    <ProductGrid products={sortedProducts} />
+                ) : (
+                    <div className={styles.noProducts}>
+                        <h3>No products found</h3>
+                        <p>Try adjusting your filters to find what you're looking for.</p>
+                        <button
+                            className={styles.resetButton}
+                            onClick={() => {
+                                setDisplayedProducts(keyboardProducts);
+                                setSortedProducts(keyboardProducts);
+                            }}
+                        >
+                            Reset Filters
+                        </button>
+                    </div>
+                )}
             </div>
         </section>
     );
