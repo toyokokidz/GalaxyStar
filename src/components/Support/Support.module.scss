@@ -1,177 +1,530 @@
+$color-primary: #7000FF;
+$color-secondary: #FF00B8;
+$color-white: #FFFFFF;
+$color-error: #ff4444;
+$color-success: #4CAF50;
+
 .wrapper {
-    display: flex;
-    max-width: 1500px;
-    margin: 2rem auto;
-    gap: 2rem;
-    padding: 0 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+}
+
+.heroSection {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mainTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, #ffffff, #a0a0a0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
   }
-  
-  .contactInfo {
-    flex: 1;
-    padding: 1.5rem;
+
+  &.active {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
+}
+
+.contentWrapper {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contactSection {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.contactInfo {
+  flex: 1;
+  min-width: 300px;
+}
+
+.header {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.question {
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.text {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  margin-bottom: 2rem;
   
-  .header {
-    font-size: 18px; 
-    margin-bottom: 1rem;
+  b {
     color: #ffffff;
-    font-weight: 600;
+    font-weight: 300;
+    font-style: italic;
   }
+}
+
+.contactMethods {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.method {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #ffffff;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+}
+
+.methodIcon {
+  font-size: 1.2rem;
+}
+
+.form {
+  flex: 1;
+  min-width: 300px;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
   
-  .question {
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.formGroup {
+  flex: 1;
+  margin-bottom: 1.5rem;
+  position: relative;
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: rgba(255, 255, 255, 0.05);
     color: #ffffff;
-    margin-bottom: 1.5rem;
-    font-size: 44px;
-    font-weight: 700;
-    line-height: 1.2;
+    transition: all 0.3s ease;
+    
+    &:focus {
+      outline: none;
+      border-color: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+    }
+    
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
   }
   
-  .text {
+  textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+}
+
+.errorInput {
+  border-color: #ff4444 !important;
+  background: rgba(255, 68, 68, 0.1) !important;
+}
+
+.errorText {
+  color: #ff4444;
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+  display: block;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+.button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(45deg, #ffffff, #a0a0a0);
+  color: #000000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+  
+  &:hover {
+    background: linear-gradient(45deg, #ffffff, #ffffff);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &:disabled {
+    background: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.5);
+    cursor: not-allowed;
+  }
+
+  &.success {
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    color: #ffffff;
+    animation: successPulse 2s infinite;
+    pointer-events: none;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: 0.5s;
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+}
+
+@keyframes successPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+  }
+}
+
+.successMessage {
+  color: #4CAF50;
+  background: rgba(76, 175, 80, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.faqSection, .warrantySection {
+  padding: 2rem;
+}
+
+.faqTitle, .warrantyTitle {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.faqItem {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+
+  h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
     color: rgba(255, 255, 255, 0.8);
     line-height: 1.5;
-    
-    b {
-      color: #ffffff;
-      font-weight: 300;
-      font-style: italic;
+  }
+}
+
+.warrantyContent {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.warrantyList {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    color: #ffffff;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateX(5px);
     }
+
+    &::before {
+      content: "✓";
+      color: #4CAF50;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .mainTitle {
+    font-size: 2.5rem;
+  }
+  
+  .contactSection {
+    flex-direction: column;
   }
   
   .form {
-    flex: 1;
-    padding: 1.5rem;
-    border: 1px solid rgba(238, 238, 238, 0.055);
-    background-color: rgba(211, 208, 208, 0.08);
-    border-radius: 8px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainTitle {
+    font-size: 2rem;
   }
   
-  .row {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    
-    @media (max-width: 480px) {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
+  .subtitle {
+    font-size: 1rem;
   }
   
-  .formGroup {
-    flex: 0.8;
-    margin-bottom: 1.5rem; 
-    position: relative;
-  
-    input,
-    textarea {
-      width: 100%;
-      padding: 0.8rem;
-      border: 1px solid rgba(221, 221, 221, 0.3);
-      border-radius: 5px;
-      font-size: 1rem;
-      font-family: inherit;
-      background-color: rgba(255, 255, 255, 0.1);
-      color: #ffffff;
-      transition: all 0.3s ease;
-      
-      &:focus {
-        outline: none;
-        border-color: #555;
-        background-color: rgba(255, 255, 255, 0.2);
-      }
-      
-      &::placeholder {
-        color: rgba(255, 255, 255, 0.6);
-      }
-    }
-    
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
+  .tabs {
+    flex-direction: column;
+    align-items: stretch;
   }
   
-  .errorInput {
-    border-color: #ff4444 !important;
-    background-color: rgba(255, 68, 68, 0.1) !important;
+  .tab {
+    width: 100%;
+    text-align: center;
   }
-  
-  .errorText {
-    color: #ff4444;
-    font-size: 0.8rem;
-    margin-top: 0.3rem;
-    display: block;
-    position: relative;
-    animation: fadeIn 0.3s ease;
-  }
-  
-  
-  .button {
-    width: 140px;
-    padding: 0.8rem;
-    background: #00000095;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    margin-top: 1rem;
-    
-    &:hover {
-      background: #333;
-      transform: translateY(-1px);
-    }
-    
-    &:active {
-      transform: translateY(0);
-    }
-    
-    &:focus {
-      outline: 2px solid #fff;
-      outline-offset: 2px;
-    }
-    
-    &:disabled {
-      background: #333;
-      color: #666;
-      border: 1px solid #444;
-    }
-  }
-  
-  .successMessage {
-    color: #4CAF50;
-    background: rgba(76, 175, 80, 0.1);
-    padding: 0.8rem;
-    border-radius: 4px;
-    margin-bottom: 1rem;
+}
+
+.downloadSection {
+  padding: 2rem;
+}
+
+.downloadTitle {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, $color-primary, $color-secondary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.downloadGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.downloadCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba($color-primary, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   }
 
-  @media (max-width: 768px) {
-    .wrapper {
-      flex-direction: column;
-      max-width: 500px;
-    }
-    
-    .contactInfo,
-    .form {
-      padding: 1.2rem;
-    }
-    
-    .question {
-      font-size: 28px;
-    }
-    
-    .button {
-      width: 100%;
+  h3 {
+    font-size: 1.25rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+.downloadInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 0.5rem 0;
+
+  span {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &::before {
+      content: "•";
+      color: $color-primary;
     }
   }
-  
-  @media (max-width: 480px) {
-    .question {
-      font-size: 24px;
-    }
-    
-    .formGroup {
-      margin-bottom: 2rem; 
-    }
+}
+
+.downloadButtons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.downloadButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, rgba($color-primary, 0.8), rgba($color-secondary, 0.8));
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  flex: 1;
+  max-width: 120px;
+  white-space: nowrap;
+
+  &:hover {
+    background: linear-gradient(135deg, $color-primary, $color-secondary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba($color-primary, 0.3);
   }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .downloadGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .downloadButtons {
+    flex-direction: column;
+  }
+}
