@@ -268,47 +268,8 @@
     "price": "$0",
     "image": "/images/galaxy-dongle.jpg",
     "link": "/accessoires/galaxy-dongle",
-    "description": {
-      "title": "Mercury M1 Pro 4K Wireless Dongle",
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Enhance Your Gaming Performance"
-        },
-        {
-          "type": "header",
-          "text": "Key Features:"
-        },
-        {
-          "type": "feature",
-          "name": "4000Hz Polling Rate",
-          "value": "Beyond standard 1000Hz"
-        },
-        {
-          "type": "feature",
-          "name": "Ultra-Low Latency",
-          "value": "For competitive gaming"
-        },
-        {
-          "type": "feature",
-          "name": "Compact Design",
-          "value": "Easy to carry"
-        },
-        {
-          "type": "feature",
-          "name": "Compatibility",
-          "value": "Works with Mercury M1 Pro models"
-        },
-        {
-          "type": "header",
-          "text": "Why Choose It:"
-        },
-        {
-          "type": "paragraph",
-          "text": "Unlock the full potential of your Mercury gaming mouse"
-        }
-      ]
-    }
+    "title": "Mercury M1 Pro 4K Wireless Dongle",
+    "description": null
   },
   {
     "id": 7,
