@@ -1,4 +1,4 @@
-@import './_variables';
+@use './_variables' as *;
 
 :root {
   --primary-color: #ff0000;

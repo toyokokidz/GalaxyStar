@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@supabase/supabase-js": "^2.49.1",
+    "firebase": "^11.6.1",
     "framer-motion": "latest",
     "next": "latest",
     "react": "latest",

@@ -1,16 +1,97 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Support.module.scss';
 import { motion } from 'framer-motion';
+import { supabase } from '../../lib/supabase';
+
+const TELEGRAM_BOT_TOKEN = '7913368433:AAGvykJTn5reMRq7o9Vu_NCeNlVLLou1ojk';
+const TELEGRAM_CHAT_ID = '7196063556';
 
 const Support = () => {
   const [activeTab, setActiveTab] = useState('contact');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
+    uid: '',
+    telegram: ''
   });
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const [tickets, setTickets] = useState([]);
+  const [selectedTicket, setSelectedTicket] = useState(null);
+  const [ticketMessages, setTicketMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState('');
+  const [isSendingMessage, setIsSendingMessage] = useState(false);
+
+  // Получаем список обращений
+  useEffect(() => {
+    const fetchTickets = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('support_tickets')
+          .select('*, support_messages(*)')
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+        setTickets(data || []);
+      } catch (err) {
+        console.error('Error fetching tickets:', err);
+      }
+    };
+
+    fetchTickets();
+
+    // Подписка на обновления
+    const ticketsSubscription = supabase
+      .channel('tickets_channel')
+      .on('postgres_changes', 
+        { event: '*', schema: 'public', table: 'support_tickets' },
+        () => fetchTickets()
+      )
+      .subscribe();
+
+    const messagesSubscription = supabase
+      .channel('messages_channel')
+      .on('postgres_changes',
+        { event: '*', schema: 'public', table: 'support_messages' },
+        () => {
+          if (selectedTicket) {
+            fetchTicketMessages(selectedTicket.id);
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      ticketsSubscription.unsubscribe();
+      messagesSubscription.unsubscribe();
+    };
+  }, [selectedTicket]);
+
+  // Получаем сообщения для выбранного обращения
+  const fetchTicketMessages = async (ticketId) => {
+    try {
+      const { data, error } = await supabase
+        .from('support_messages')
+        .select('*')
+        .eq('ticket_id', ticketId)
+        .order('created_at', { ascending: true });
+
+      if (error) throw error;
+      setTicketMessages(data || []);
+    } catch (err) {
+      console.error('Error fetching messages:', err);
+    }
+  };
+
+  // При выборе обращения загружаем его сообщения
+  useEffect(() => {
+    if (selectedTicket) {
+      fetchTicketMessages(selectedTicket.id);
+    }
+  }, [selectedTicket]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,15 +128,140 @@ const Support = () => {
     return isValid;
   };
 
-  const handleSubmit = (e) => {
+  const sendToTelegram = async (ticketNumber, message, isNewTicket = false) => {
+    try {
+      const messageText = isNewTicket ? `
+🆕 Новое обращение #${ticketNumber}
+
+👤 От: ${formData.name}
+📧 Email: ${formData.email}
+🆔 UID: ${formData.uid || 'Не указан'}
+📱 Telegram: ${formData.telegram || 'Не указан'}
+
+💬 Сообщение:
+${message}
+
+@toyokokids
+` : `
+💬 Новое сообщение по обращению #${ticketNumber}
+
+${message}
+
+@toyokokids
+`;
+
+      const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: messageText,
+          parse_mode: 'HTML'
+        })
+      });
+
+      const responseData = await response.json();
+      if (!response.ok || !responseData.ok) {
+        throw new Error(responseData.description || 'Failed to send message to Telegram');
+      }
+
+      return responseData.result.message_id;
+    } catch (error) {
+      console.error('Error sending to Telegram:', error);
+      throw new Error('Failed to send message to Telegram. Please try again.');
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      console.log('Form would be submitted:', formData);
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+    try {
+      // Создаем новое обращение
+      const { data: ticketData, error: ticketError } = await supabase
+        .from('support_tickets')
+        .insert([{
+          name: formData.name,
+          email: formData.email,
+          telegram: formData.telegram,
+          uid: formData.uid,
+          status: 'open'
+        }])
+        .select()
+        .single();
+
+      if (ticketError) throw ticketError;
+
+      // Отправляем сообщение в Telegram и получаем message_id
+      const telegramMessageId = await sendToTelegram(
+        ticketData.ticket_number,
+        formData.message,
+        true
+      );
+
+      // Сохраняем первое сообщение
+      const { error: messageError } = await supabase
+        .from('support_messages')
+        .insert([{
+          ticket_id: ticketData.id,
+          message: formData.message,
+          telegram_message_id: telegramMessageId
+        }]);
+
+      if (messageError) throw messageError;
+
       setIsSubmitted(true);
       setTimeout(() => {
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({
+          name: '',
+          email: '',
+          message: '',
+          uid: '',
+          telegram: ''
+        });
         setIsSubmitted(false);
-      }, 5000);
+      }, 3000);
+    } catch (error) {
+      console.error('Error creating ticket:', error);
+      alert(error.message || 'Error sending message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
+    if (!newMessage.trim() || !selectedTicket) return;
+
+    setIsSendingMessage(true);
+    try {
+      // Отправляем сообщение в Telegram и получаем message_id
+      const telegramMessageId = await sendToTelegram(
+        selectedTicket.ticket_number,
+        newMessage
+      );
+
+      // Сохраняем сообщение
+      const { error: messageError } = await supabase
+        .from('support_messages')
+        .insert([{
+          ticket_id: selectedTicket.id,
+          message: newMessage,
+          telegram_message_id: telegramMessageId
+        }]);
+
+      if (messageError) throw messageError;
+
+      setNewMessage('');
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert(error.message || 'Error sending message. Please try again.');
+    } finally {
+      setIsSendingMessage(false);
     }
   };
 
@@ -76,25 +282,13 @@ const Support = () => {
           className={`${styles.tab} ${activeTab === 'contact' ? styles.active : ''}`}
           onClick={() => setActiveTab('contact')}
         >
-          Contact Us
+          New Request
         </button>
         <button 
-          className={`${styles.tab} ${activeTab === 'faq' ? styles.active : ''}`}
-          onClick={() => setActiveTab('faq')}
+          className={`${styles.tab} ${activeTab === 'tickets' ? styles.active : ''}`}
+          onClick={() => setActiveTab('tickets')}
         >
-          FAQ
-        </button>
-        <button 
-          className={`${styles.tab} ${activeTab === 'warranty' ? styles.active : ''}`}
-          onClick={() => setActiveTab('warranty')}
-        >
-          Warranty
-        </button>
-        <button 
-          className={`${styles.tab} ${activeTab === 'download' ? styles.active : ''}`}
-          onClick={() => setActiveTab('download')}
-        >
-          Software Download
+          My Requests
         </button>
       </div>
 
@@ -108,9 +302,10 @@ const Support = () => {
           >
             <div className={styles.contactInfo}>
               <h2 className={styles.header}>Get in Touch</h2>
-              <p className={styles.question}>Hi, how can we help?</p>
+              <p className={styles.question}>How can we help you today?</p>
               <p className={styles.text}>
-                For customer service, please reach out to <b>service@galaxystar.com</b>
+                Our support team is here to assist you with any questions or concerns you may have.
+                We typically respond within 24 hours.
               </p>
               <div className={styles.contactMethods}>
                 <div className={styles.method}>
@@ -136,7 +331,7 @@ const Support = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <div className={styles.row}>
-                <div className={styles.formGroup}>
+                <div className={`${styles.formGroup} ${styles.formControl}`}>
                   <input
                     type="text"
                     name="name"
@@ -148,7 +343,7 @@ const Support = () => {
                   />
                   {errors.name && <span className={styles.errorText}>{errors.name}</span>}
                 </div>
-                <div className={styles.formGroup}>
+                <div className={`${styles.formGroup} ${styles.formControl}`}>
                   <input
                     type="email"
                     name="email"
@@ -162,7 +357,28 @@ const Support = () => {
                 </div>
               </div>
 
-              <div className={styles.formGroup}>
+              <div className={styles.row}>
+                <div className={`${styles.formGroup} ${styles.formControl}`}>
+                  <input
+                    type="text"
+                    name="uid"
+                    placeholder="UID (optional)"
+                    value={formData.uid}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className={`${styles.formGroup} ${styles.formControl}`}>
+                  <input
+                    type="text"
+                    name="telegram"
+                    placeholder="Telegram Username (optional)"
+                    value={formData.telegram}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              <div className={`${styles.formGroup} ${styles.formControl}`}>
                 <textarea
                   name="message"
                   placeholder="Message"
@@ -177,124 +393,90 @@ const Support = () => {
               <motion.button 
                 type="submit" 
                 className={`${styles.button} ${isSubmitted ? styles.success : ''}`}
-                disabled={!!errors.name || !!errors.email || !!errors.message || isSubmitted}
+                disabled={isSubmitting || isSubmitted}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {isSubmitted ? 'Message Sent Successfully!' : 'Send Message'}
+                {isSubmitting ? 'Sending...' : isSubmitted ? 'Message Sent!' : 'Send Message'}
               </motion.button>
             </motion.form>
           </motion.div>
         )}
 
-        {activeTab === 'faq' && (
+        {activeTab === 'tickets' && (
           <motion.div 
-            className={styles.faqSection}
+            className={styles.ticketsSection}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className={styles.faqTitle}>Frequently Asked Questions</h2>
-            <div className={styles.faqList}>
-              <div className={styles.faqItem}>
-                <h3>How do I track my order?</h3>
-                <p>You can track your order using the tracking number provided in your confirmation email.</p>
-              </div>
-              <div className={styles.faqItem}>
-                <h3>What is your return policy?</h3>
-                <p>We offer a 30-day return policy for all products. Items must be in their original condition.</p>
-              </div>
-              <div className={styles.faqItem}>
-                <h3>How do I contact customer support?</h3>
-                <p>You can reach us via email at service@galaxystar.com or use our contact form above.</p>
-              </div>
+            <div className={styles.ticketsList}>
+              <h2 className={styles.sectionTitle}>My Requests</h2>
+              {tickets.map(ticket => (
+                <div 
+                  key={ticket.id} 
+                  className={`${styles.ticketItem} ${selectedTicket?.id === ticket.id ? styles.selected : ''}`}
+                  onClick={() => setSelectedTicket(ticket)}
+                >
+                  <div className={styles.ticketHeader}>
+                    <span className={styles.ticketNumber}>#{ticket.ticket_number}</span>
+                    <span className={`${styles.ticketStatus} ${styles[ticket.status]}`}>
+                      {ticket.status}
+                    </span>
+                  </div>
+                  <div className={styles.ticketInfo}>
+                    <span>{ticket.email}</span>
+                    {ticket.telegram && <span>TG: {ticket.telegram}</span>}
+                  </div>
+                  <span className={styles.ticketTime}>
+                    {new Date(ticket.created_at).toLocaleString()}
+                  </span>
+                </div>
+              ))}
             </div>
-          </motion.div>
-        )}
 
-        {activeTab === 'warranty' && (
-          <motion.div 
-            className={styles.warrantySection}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className={styles.warrantyTitle}>Warranty Information</h2>
-            <div className={styles.warrantyContent}>
-              <p>All GalaxyStar products come with a 2-year limited warranty covering manufacturing defects.</p>
-              <ul className={styles.warrantyList}>
-                <li>2-year limited warranty</li>
-                <li>Free shipping for warranty claims</li>
-                <li>Quick replacement process</li>
-                <li>24/7 support for warranty issues</li>
-              </ul>
-            </div>
-          </motion.div>
-        )}
+            {selectedTicket && (
+              <div className={styles.chatSection}>
+                <div className={styles.chatHeader}>
+                  <h3>Request #{selectedTicket.ticket_number}</h3>
+                  <span className={`${styles.ticketStatus} ${styles[selectedTicket.status]}`}>
+                    {selectedTicket.status}
+                  </span>
+                </div>
 
-        {activeTab === 'download' && (
-          <motion.div 
-            className={styles.downloadSection}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className={styles.downloadTitle}>Software Downloads</h2>
-            <div className={styles.downloadGrid}>
-              <div className={styles.downloadCard}>
-                <h3>GalaxyStar Control Center</h3>
-                <p>Customize RGB lighting, adjust audio settings, and update firmware.</p>
-                <div className={styles.downloadInfo}>
-                  <span>Latest Version: 2.1.0 (March 15, 2024)</span>
-                  <span>Size: 45MB</span>
-                  <span>Supported OS: Windows 10/11, macOS 12+</span>
+                <div className={styles.messagesList}>
+                  {ticketMessages.map(message => (
+                    <div 
+                      key={message.id}
+                      className={`${styles.messageItem} ${message.is_support ? styles.support : styles.user}`}
+                    >
+                      <div className={styles.messageContent}>
+                        {message.message}
+                      </div>
+                      <span className={styles.messageTime}>
+                        {new Date(message.created_at).toLocaleString()}
+                      </span>
+                    </div>
+                  ))}
                 </div>
-                <div className={styles.downloadButtons}>
-                  <a href="/downloads/windows" className={styles.downloadButton}>
-                    Download Win
-                  </a>
-                  <a href="/downloads/mac" className={styles.downloadButton}>
-                    Download Mac
-                  </a>
-                </div>
+
+                <form onSubmit={handleSendMessage} className={styles.messageForm}>
+                  <textarea
+                    className={styles.messageInput}
+                    value={newMessage}
+                    onChange={(e) => setNewMessage(e.target.value)}
+                    placeholder="Type your message..."
+                  />
+                  <button 
+                    type="submit" 
+                    className={styles.sendButton}
+                    disabled={isSendingMessage || !newMessage.trim()}
+                  >
+                    {isSendingMessage ? 'Sending...' : 'Send'}
+                  </button>
+                </form>
               </div>
-              
-              <div className={styles.downloadCard}>
-                <h3>Firmware Updates</h3>
-                <p>Latest firmware updates for GalaxyStar devices.</p>
-                <div className={styles.downloadInfo}>
-                  <span>Latest Version: 1.2.3 (March 10, 2024)</span>
-                  <span>Previous Version: 1.2.2 (Feb 28, 2024)</span>
-                  <span>Changelog: Performance improvements</span>
-                </div>
-                <div className={styles.downloadButtons}>
-                  <a href="/downloads/firmware/latest" className={styles.downloadButton}>
-                    Download
-                  </a>
-                  <a href="/downloads/firmware/previous" className={styles.downloadButton}>
-                    Previous Ver
-                  </a>
-                </div>
-              </div>
-              
-              <div className={styles.downloadCard}>
-                <h3>User Manuals</h3>
-                <p>Detailed product documentation and user guides.</p>
-                <div className={styles.downloadInfo}>
-                  <span>Updated: March 2024</span>
-                  <span>Available in: EN, ES, DE, FR</span>
-                  <span>Format: PDF (5-10MB)</span>
-                </div>
-                <div className={styles.downloadButtons}>
-                  <a href="/downloads/manuals/en" className={styles.downloadButton}>
-                    English
-                  </a>
-                  <a href="/downloads/manuals/all" className={styles.downloadButton}>
-                    All Languages
-                  </a>
-                </div>
-              </div>
-            </div>
+            )}
           </motion.div>
         )}
       </div>
