@@ -1,8 +1,4 @@
-$color-white: #FFFFFF;
-$color-text-light: rgba(255, 255, 255, 0.7);
-$font-size-base: 1rem;
-$transition-duration: 0.3s;
-$border-radius: 12px;
+@use '../../styles/variables' as *;
 
 .sortContainer {
   position: relative;
@@ -15,10 +11,10 @@ $border-radius: 12px;
 .sortButton {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid $color-border;
   border-radius: 20px;
   font-size: $font-size-base;
   color: $color-text-light;
@@ -43,21 +39,21 @@ $border-radius: 12px;
   position: absolute;
   top: 100%;
   right: 0;
-  margin-top: 8px;
+  margin-top: 0.5rem;
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid $color-border;
   border-radius: 8px;
   z-index: 10;
 
   div {
-    padding: 8px 16px;
+    padding: 0.5rem 1rem;
     color: $color-white;
     cursor: pointer;
     transition: background-color $transition-duration ease;
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: $color-border;
     }
   }
 }

@@ -8,9 +8,9 @@ $border-radius: 12px;
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-  padding: 0 20px;
+  grid-template-columns: repeat(auto-fill, minmax(17.5rem, 1fr));
+  gap: 1.25rem;
+  padding: 0 1.25rem;
   align-items: stretch;
 }
 
@@ -22,7 +22,7 @@ $border-radius: 12px;
   position: relative;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -41,7 +41,7 @@ $border-radius: 12px;
   }
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-0.3125rem);
     background: rgba(18, 18, 18, 0.95);
 
     &::before {
@@ -84,9 +84,9 @@ $border-radius: 12px;
 .tag,
 .discount {
   position: absolute;
-  top: 16px;
-  left: 16px;
-  padding: 4px 16px;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.25rem 1rem;
   color: $color-white;
   display: flex;
   align-items: center;
@@ -118,7 +118,7 @@ $border-radius: 12px;
 }
 
 .textContent {
-  padding: 20px;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -136,7 +136,7 @@ $border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 0.5rem;
   width: 100%;
 }
 
@@ -167,9 +167,9 @@ $border-radius: 12px;
 }
 
 .addToCartButton {
-  margin: 10px auto 0;
-  padding: 8px 24px;
-  max-width: 160px;
+  margin: 0.625rem auto 0;
+  padding: 0.5rem 1.5rem;
+  max-width: 10rem;
   background: linear-gradient(135deg, $color-primary, $color-secondary);
   border: none;
   border-radius: 60px;
@@ -201,7 +201,7 @@ $border-radius: 12px;
   }
 
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY(-0.125rem);
     box-shadow: 0 6px 20px rgba($color-primary, 0.4);
     background: linear-gradient(135deg, lighten($color-primary, 5%), lighten($color-secondary, 5%));
 
@@ -217,7 +217,7 @@ $border-radius: 12px;
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 64rem) {
   .product {
     aspect-ratio: 328/462;
   }
