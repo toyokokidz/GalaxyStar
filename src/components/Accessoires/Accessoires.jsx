@@ -48,8 +48,8 @@ const Accessoires = () => {
                         <button
                             className={styles.resetButton}
                             onClick={() => {
-                                setDisplayedProducts(keyboardProducts);
-                                setSortedProducts(keyboardProducts);
+                                setDisplayedProducts(accessoiresProducts);
+                                setSortedProducts(accessoiresProducts);
                             }}
                         >
                             Reset Filters
