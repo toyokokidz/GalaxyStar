@@ -2,8 +2,6 @@ $color-white: #FFFFFF;
 $color-primary: #7000FF;
 $color-secondary: #FF00B8;
 $color-error: #f83a3a;
-$color-success: #00f2fe;
-$color-accent: #4facfe;
 $font-size-base: 1rem;
 $transition-duration: 0.3s;
 $border-radius: 12px;
@@ -11,23 +9,23 @@ $border-radius: 12px;
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
+  gap: 20px;
   padding: 0 20px;
   align-items: stretch;
 }
 
 .product {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: $border-radius;
   overflow: hidden;
+  transition: transform $transition-duration ease;
   position: relative;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   height: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all $transition-duration ease;
 
   &::before {
     content: '';
@@ -35,26 +33,24 @@ $border-radius: 12px;
     inset: 0;
     padding: 1px;
     border-radius: $border-radius;
-    background: linear-gradient(135deg, rgba($color-primary, 0.5), rgba($color-secondary, 0.5));
+    background: linear-gradient(135deg, rgba($color-primary, 0.5), rgba($color-secondary, 0.5) 50%, transparent);
     -webkit-mask: linear-gradient($color-white 0 0) content-box, linear-gradient($color-white 0 0);
     mask: linear-gradient($color-white 0 0) content-box, linear-gradient($color-white 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-    opacity: 0.5;
-    transition: opacity $transition-duration ease;
   }
 
   &:hover {
+    transform: translateY(-5px);
     background: rgba(18, 18, 18, 0.95);
-    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
 
     &::before {
-      opacity: 1;
-      background: linear-gradient(135deg, rgba($color-primary, 0.8), rgba($color-secondary, 0.8));
+      background: linear-gradient(135deg, rgba($color-primary, 0.8), rgba($color-secondary, 0.8) 50%, transparent);
     }
 
-    .overlay {
-      opacity: 1;
+    .imageWrapper img {
+      transform: scale(1.05);
+      filter: brightness(1.1);
     }
 
     .title {
@@ -63,10 +59,6 @@ $border-radius: 12px;
       background-clip: text;
       color: transparent;
       text-shadow: 0 0 20px rgba($color-primary, 0.3);
-    }
-
-    img {
-      filter: brightness(1.1);
     }
   }
 }
@@ -77,52 +69,15 @@ $border-radius: 12px;
   padding-top: 100%;
   overflow: hidden;
   flex-shrink: 0;
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.imageContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 
   img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: all $transition-duration ease;
-  }
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: all $transition-duration ease;
-  backdrop-filter: blur(4px);
-}
-
-.overlayContent {
-  padding: 12px 24px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 30px;
-  color: $color-white;
-  font-size: 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  
-  &:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.3);
+    transition: transform $transition-duration ease;
   }
 }
 
@@ -131,36 +86,34 @@ $border-radius: 12px;
   position: absolute;
   top: 16px;
   left: 16px;
-  padding: 6px 16px;
+  padding: 4px 16px;
   color: $color-white;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 30px;
-  font-size: 0.85rem;
+  border-radius: 60px;
+  font-size: 0.8rem;
   z-index: 2;
   text-shadow: 0 0 10px rgba($color-white, 0.5);
-  backdrop-filter: blur(8px);
-  letter-spacing: 0.5px;
 }
 
 .tag {
-  background: linear-gradient(135deg, rgba($color-primary, 0.9), rgba($color-secondary, 0.9));
-  box-shadow: 0 4px 15px rgba($color-primary, 0.3);
+  background: linear-gradient(135deg, $color-primary, $color-secondary);
+  box-shadow: 0 0 15px rgba($color-primary, 0.3);
   animation: tagPulse 2s infinite;
 }
 
 .discount {
-  background: rgba($color-error, 0.9);
-  box-shadow: 0 4px 15px rgba($color-error, 0.3);
+  background: $color-error;
+  box-shadow: 0 0 15px rgba($color-error, 0.3);
 }
 
 @keyframes tagPulse {
   0%, 100% {
-    box-shadow: 0 4px 15px rgba($color-primary, 0.3);
+    box-shadow: 0 0 15px rgba($color-primary, 0.3);
   }
   50% {
-    box-shadow: 0 4px 20px rgba($color-primary, 0.5);
+    box-shadow: 0 0 20px rgba($color-primary, 0.5);
   }
 }
 
@@ -172,6 +125,7 @@ $border-radius: 12px;
   justify-content: space-between;
   text-align: center;
   flex-grow: 1;
+  box-sizing: border-box;
   background: transparent;
   width: 100%;
   position: relative;
@@ -182,155 +136,89 @@ $border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 8px;
   width: 100%;
-  margin: 12px 0;
 }
 
 .title {
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   font-weight: 500;
   color: $color-white;
   width: 100%;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  transition: all $transition-duration ease;
-  line-height: 1.4;
-  letter-spacing: 0.3px;
 }
 
 .price {
   font-size: 1.25rem;
   font-weight: 600;
   color: $color-white;
-  background: linear-gradient(45deg, $color-white, #a0a0a0);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .price_sale {
   font-size: 1.25rem;
   font-weight: 600;
-  color: $color-error;
-  background: linear-gradient(45deg, $color-error, darken($color-error, 10%));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #FF3333;
 }
 
 .price_old {
   font-size: $font-size-base;
   color: rgba(255, 255, 255, 0.5);
-  text-decoration-color: rgba($color-error, 0.5);
 }
 
 .addToCartButton {
-  width: auto;
-  min-width: 140px;
-  max-width: 200px;
-  padding: 10px 20px;
-  background: linear-gradient(135deg, rgba($color-primary, 0.8), rgba($color-secondary, 0.8));
+  margin: 10px auto 0;
+  padding: 8px 24px;
+  max-width: 160px;
+  background: linear-gradient(135deg, $color-primary, $color-secondary);
   border: none;
-  border-radius: 25px;
+  border-radius: 60px;
   color: $color-white;
-  font-size: 0.92rem;
+  font-size: $font-size-base;
   cursor: pointer;
   transition: all $transition-duration ease;
+  box-shadow: 0 4px 15px rgba($color-primary, 0.3);
   position: relative;
-  overflow: hidden;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  margin: 0 auto;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent
-    );
-    transition: 0.5s;
+  z-index: 3;
+
+  &.outOfStock {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    box-shadow: none !important;
+    cursor: not-allowed;
+    pointer-events: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 60px;
+    }
   }
 
   &:hover {
-    background: linear-gradient(135deg, $color-primary, $color-secondary);
-    box-shadow: 0 5px 15px rgba($color-primary, 0.3);
-    
-    &::before {
-      left: 100%;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba($color-primary, 0.4);
+    background: linear-gradient(135deg, lighten($color-primary, 5%), lighten($color-secondary, 5%));
+
+    &.outOfStock {
+      transform: none !important;
+      background: rgba(255, 255, 255, 0.1) !important;
     }
   }
 
-  &.outOfStock {
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.5);
-    cursor: not-allowed;
-    box-shadow: none;
-    
-    &:hover {
-      background: rgba(255, 255, 255, 0.1);
-      transform: none;
-    }
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba($color-primary, 0.2);
   }
-}
-
-.buttonContent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.buttonIcon {
-  font-size: 1.1rem;
-}
-
-.buttonText {
-  font-weight: 500;
 }
 
 @media (max-width: 1024px) {
   .product {
     aspect-ratio: 328/462;
-  }
-
-  .grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
-    padding: 0 16px;
-  }
-
-  .title {
-    font-size: 1rem;
-  }
-
-  .price,
-  .price_sale {
-    font-size: 1.1rem;
-  }
-
-  .price_old {
-    font-size: 0.9rem;
-  }
-
-  .addToCartButton {
-    padding: 8px 16px;
-    font-size: 0.85rem;
-    min-width: 120px;
   }
 }
