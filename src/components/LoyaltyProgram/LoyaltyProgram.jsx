@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import LoyaltyHero from './LoyaltyHero';
 import LoyaltyTiers from './LoyaltyTiers';
+import LoyaltyNFTCards from './LoyaltyNFTCards';
 import LoyaltyBenefits from './LoyaltyBenefits';
 import LoyaltyFAQ from './LoyaltyFAQ';
 import LoyaltyTestimonials from './LoyaltyTestimonials';
@@ -13,6 +14,7 @@ const LoyaltyProgram = () => {
 
   const tabs = [
     { id: 'tiers', label: 'Membership Tiers' },
+    { id: 'nftcards', label: 'NFT Cards' },
     { id: 'benefits', label: 'Benefits' },
     { id: 'faq', label: 'FAQ' },
     { id: 'testimonials', label: 'Member Stories' }
@@ -42,6 +44,7 @@ const LoyaltyProgram = () => {
           transition={{ duration: 0.5 }}
         >
           {activeTab === 'tiers' && <LoyaltyTiers />}
+          {activeTab === 'nftcards' && <LoyaltyNFTCards />}
           {activeTab === 'benefits' && <LoyaltyBenefits />}
           {activeTab === 'faq' && <LoyaltyFAQ />}
           {activeTab === 'testimonials' && <LoyaltyTestimonials />}
