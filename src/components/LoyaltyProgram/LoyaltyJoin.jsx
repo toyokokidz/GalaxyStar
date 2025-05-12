@@ -11,21 +11,84 @@ const LoyaltyJoin = () => {
     agreement: false
   });
   
+  const [formErrors, setFormErrors] = useState({
+    email: '',
+    phone: ''
+  });
+  
   const [isSubmitted, setIsSubmitted] = useState(false);
+  
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+  
+  const validatePhone = (phone) => {
+    // Allow empty phone as it's optional
+    if (!phone) return true;
+    
+    // Check if phone contains only numbers and special characters (+, -, space, parentheses)
+    const phoneRegex = /^[0-9+\-\s()]*$/;
+    return phoneRegex.test(phone);
+  };
   
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    const newValue = type === 'checkbox' ? checked : value;
+    
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: newValue
     }));
+    
+    // Clear error when user starts typing
+    if (name === 'email' || name === 'phone') {
+      setFormErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
+    
+    // Validate phone as user types
+    if (name === 'phone' && value) {
+      if (!validatePhone(value)) {
+        setFormErrors(prev => ({
+          ...prev,
+          phone: 'Phone number can only contain digits and special characters (+, -, spaces)'
+        }));
+      }
+    }
   };
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Здесь будет логика отправки данных на сервер
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
+    
+    // Validate fields before submission
+    let isValid = true;
+    const newErrors = {
+      email: '',
+      phone: ''
+    };
+    
+    // Validate email
+    if (!validateEmail(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+      isValid = false;
+    }
+    
+    // Validate phone (if provided)
+    if (formData.phone && !validatePhone(formData.phone)) {
+      newErrors.phone = 'Phone number can only contain digits and special characters (+, -, spaces)';
+      isValid = false;
+    }
+    
+    setFormErrors(newErrors);
+    
+    if (isValid) {
+      // Здесь будет логика отправки данных на сервер
+      console.log('Form submitted:', formData);
+      setIsSubmitted(true);
+    }
   };
   
   return (
@@ -108,6 +171,7 @@ const LoyaltyJoin = () => {
                     placeholder="Email Address"
                     required
                   />
+                  {formErrors.email && <div className={styles.errorMessage}>{formErrors.email}</div>}
                 </div>
                 
                 <div className={styles.formGroup}>
@@ -119,6 +183,7 @@ const LoyaltyJoin = () => {
                     onChange={handleChange}
                     placeholder="Phone Number (optional)"
                   />
+                  {formErrors.phone && <div className={styles.errorMessage}>{formErrors.phone}</div>}
                 </div>
                 
                 <div className={styles.checkboxGroup}>
