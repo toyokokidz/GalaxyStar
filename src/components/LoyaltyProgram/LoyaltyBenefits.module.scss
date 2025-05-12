@@ -1,0 +1,131 @@
+@import '../../styles/variables';
+
+.benefitsSection {
+  padding: 2rem 0;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.sectionDescription {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+  
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
+}
+
+.benefitCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  
+  &:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    
+    .benefitIcon {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba($color-primary, 0.5);
+    }
+  }
+}
+
+.benefitIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba($color-primary, 0.3);
+}
+
+.benefitTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.benefitDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  flex-grow: 1;
+}
+
+.callToAction {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 3rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+.enrollButton {
+  background: $color-primary;
+  color: #fff;
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba($color-primary, 0.5);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: darken($color-primary, 10%);
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba($color-primary, 0.7);
+  }
+} 

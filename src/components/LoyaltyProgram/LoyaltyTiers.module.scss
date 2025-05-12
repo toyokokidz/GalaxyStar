@@ -1,0 +1,208 @@
+@import '../../styles/variables';
+
+.tiersSection {
+  padding: 2rem 0;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.sectionDescription {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.tiersContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+}
+
+.tierCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--tier-color);
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle at center, var(--tier-color) 0%, transparent 70%);
+    opacity: 0.3;
+    border-radius: 50%;
+    filter: blur(15px);
+    transform: translate(30%, -30%);
+  }
+  
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.07);
+  }
+}
+
+.tierIcon {
+  font-size: 2.5rem;
+  color: var(--tier-color);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 15px var(--tier-color);
+}
+
+.tierName {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--tier-color);
+}
+
+.tierPoints {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.benefitsList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+  flex-grow: 1;
+}
+
+.benefitItem {
+  margin-bottom: 0.8rem;
+  padding-left: 1.5rem;
+  position: relative;
+  color: rgba(255, 255, 255, 0.8);
+  
+  &::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--tier-color);
+  }
+}
+
+.nextTier {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 1rem;
+  
+  span {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.progressBar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background: var(--tier-color);
+  border-radius: 3px;
+}
+
+.pointsInfo {
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  
+  h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #fff;
+  }
+  
+  @media (max-width: 768px) {
+    margin: 0 1rem;
+  }
+}
+
+.pointsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pointItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    background: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.pointValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $color-primary;
+  margin-bottom: 0.5rem;
+}
+
+.pointDesc {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+} 

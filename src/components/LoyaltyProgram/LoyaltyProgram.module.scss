@@ -1,0 +1,81 @@
+@import '../../styles/variables';
+
+.loyaltyProgram {
+  width: 100%;
+  background: linear-gradient(to bottom, #0c0c0c, #1a1a1a);
+  color: #ffffff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.tabsContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+.tab {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: $color-primary;
+    transition: width 0.3s ease;
+  }
+  
+  &:hover {
+    color: #ffffff;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+.activeTab {
+  color: #ffffff;
+  
+  &::after {
+    width: 60%;
+  }
+}
+
+.tabContent {
+  min-height: 500px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 

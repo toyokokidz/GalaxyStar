@@ -1,0 +1,238 @@
+@import '../../styles/variables';
+
+.joinSection {
+  padding: 5rem 0;
+  background: rgba(0, 0, 0, 0.3);
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/loyalty-join-bg.jpg') no-repeat center/cover;
+    opacity: 0.1;
+    z-index: 0;
+  }
+}
+
+.joinContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.joinContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.textContent {
+  color: #fff;
+  
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+  
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+.featuresList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.featureIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: $color-primary;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: bold;
+}
+
+.formContainer {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 3rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
+}
+
+.enrollForm {
+  h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+  
+  input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      box-shadow: 0 0 0 2px rgba($color-primary, 0.3);
+    }
+    
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+}
+
+.checkboxGroup {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+  
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 3px;
+    accent-color: $color-primary;
+  }
+  
+  label {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.7);
+    
+    a {
+      color: $color-primary;
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.submitButton {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: $color-primary;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba($color-primary, 0.5);
+  
+  &:hover {
+    background: darken($color-primary, 10%);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba($color-primary, 0.7);
+  }
+}
+
+.successMessage {
+  text-align: center;
+  color: #fff;
+  
+  h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 1.5rem 0;
+  }
+  
+  p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+}
+
+.successIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: rgba($color-primary, 0.2);
+  border-radius: 50%;
+  font-size: 2.5rem;
+  color: $color-primary;
+  border: 2px solid $color-primary;
+  margin-bottom: 1rem;
+}
+
+.startShopping {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #fff !important;
+}
+
+.shopButton {
+  background: #fff;
+  color: $color-primary;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+} 

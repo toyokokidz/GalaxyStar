@@ -1,0 +1,128 @@
+@import '../../styles/variables';
+
+.faqSection {
+  padding: 2rem 0;
+  max-width: 900px;
+  margin: 0 auto;
+  
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.sectionDescription {
+  text-align: center;
+  margin: 0 auto 3rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.faqContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.faqItem {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  
+  &.active {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    
+    .faqQuestion {
+      color: $color-primary;
+      background: rgba(255, 255, 255, 0.08);
+    }
+  }
+}
+
+.faqQuestion {
+  width: 100%;
+  padding: 1.5rem;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: $color-primary;
+  }
+  
+  &:focus {
+    outline: none;
+  }
+}
+
+.faqIcon {
+  font-size: 1.5rem;
+  min-width: 24px;
+  margin-left: 1rem;
+  color: $color-primary;
+}
+
+.faqAnswer {
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.faqAnswerContent {
+  padding: 0 1.5rem 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+.contactInfo {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+  }
+}
+
+.emailLink {
+  color: $color-primary;
+  margin-left: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    text-decoration: underline;
+    color: lighten($color-primary, 10%);
+  }
+} 
