@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useCart } from '../../context/CartContext';
 import keyboardData from '../../data/keyboard.json';
 import styles from '../../components/Accessoires/Accessoires.module.scss';
 import ProductActions from '../../components/ProductActions/ProductActions';
@@ -65,8 +64,8 @@ const KeyboardPage = () => {
   return (
       <div className={styles.productPageContainer}>
         <div className={styles.breadcrumbs}>
-          <Link href="/">Home/</Link>
-          <Link href="/keyboard">Keyboard/</Link>
+          <Link href="/">Home</Link>
+          <Link href="/keyboard">Keyboard</Link>
           <span>{keyboard.name}</span>
         </div>
 
