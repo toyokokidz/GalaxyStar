@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useCart } from '../../context/CartContext';
 import styles from '../../components/Accessoires/Accessoires.module.scss';
+import ProductDescription from "../ProductDescription/ProductDescription";
 
 export default function ProductActions({
                                            product,
@@ -9,7 +10,6 @@ export default function ProductActions({
                                            showQuantity = true
                                        }) {
     const [quantity, setQuantity] = useState(1);
-    const [isDescriptionVisible, setDescriptionVisible] = useState(false);
     const { addToCart, cartItems } = useCart();
 
     const isInCart = cartItems.some(item => item.id === product.id);
@@ -26,32 +26,6 @@ export default function ProductActions({
             quantity: showQuantity ? quantity : 1,
             category
         });
-    };
-
-    // Рендер описания
-    const renderDescription = () => {
-        if (!product.description) return null;
-
-        if (typeof product.description === 'string') {
-            return <p>{product.description}</p>;
-        }
-
-        return (
-            <div className={styles.descriptionContent}>
-                {product.description.content?.map((item, index) => (
-                    <div key={index}>
-                        {item.type === 'header' && <h3 className={styles.featureHeader}>{item.text}</h3>}
-                        {item.type === 'feature' && (
-                            <div className={styles.featureItem}>
-                                <span className={styles.featureName}>{item.name}:</span>
-                                <span>{item.value}</span>
-                            </div>
-                        )}
-                        {item.type === 'paragraph' && <p className={styles.descriptionText}>{item.text}</p>}
-                    </div>
-                ))}
-            </div>
-        );
     };
 
     return (
@@ -98,17 +72,10 @@ export default function ProductActions({
                 {isInCart ? '✓ Added to Cart' : 'Add to Cart'}
             </button>
 
-            {showDescription && product.description && (
-                <div className={styles.descriptionSection}>
-                    <button
-                        onClick={() => setDescriptionVisible(!isDescriptionVisible)}
-                        className={styles.toggleButton}
-                    >
-                        {isDescriptionVisible ? 'Hide Description' : 'Show Description'}
-                    </button>
-                    {isDescriptionVisible && renderDescription()}
-                </div>
-            )}
+            <ProductDescription
+                product={product}
+                showDescription={showDescription}
+            />
         </div>
     );
 }

@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useCart } from '../../context/CartContext';
 import mouseData from '../../data/mouse.json';
 import styles from '../../components/Accessoires/Accessoires.module.scss';
 import ProductActions from '../../components/ProductActions/ProductActions';
