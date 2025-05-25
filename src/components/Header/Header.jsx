@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import styles from './Header.module.scss'
 import AuthModal from '../Auth/AuthModal'
+import ThemeToggle from '../ThemeToggle/ThemeToggle'
 import { useCart } from '../../context/CartContext.jsx'
 
 const Header = () => {
@@ -53,7 +54,8 @@ const Header = () => {
           </div>
           <div className={styles.right}>
             <Link href="/support" className={styles.link}>Support</Link>
-            <Link href="/cart" className={styles.link}>Cart ({getCartCount()})</Link>
+            <Link href="/cart" className={styles.link} data-cart-button>Cart ({getCartCount()})</Link>
+            <ThemeToggle />
             {user ? (
               <div className={styles.userMenu}>
                 <button 
