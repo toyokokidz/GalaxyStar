@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCart } from '../context/CartContext.jsx';
+import { useCartWithToast } from '../hooks/useCartWithToast';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../styles/Cart.module.scss';
@@ -10,7 +10,7 @@ const CartPage = () => {
     removeFromCart, 
     incrementQuantity, 
     decrementQuantity
-  } = useCart();
+  } = useCartWithToast();
 
   const FREE_SHIPPING_THRESHOLD = 150;
   

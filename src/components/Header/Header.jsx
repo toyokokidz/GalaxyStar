@@ -4,12 +4,14 @@ import styles from './Header.module.scss'
 import AuthModal from '../Auth/AuthModal'
 import ThemeToggle from '../ThemeToggle/ThemeToggle'
 import { useCart } from '../../context/CartContext.jsx'
+import { useToast } from '../../context/ToastContext'
 
 const Header = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [user, setUser] = useState(null)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const { cartItems } = useCart()
+  const { showSuccess } = useToast()
 
   const getCartCount = () => {
     return cartItems ? cartItems.reduce((total, item) => total + (item.quantity || 1), 0) : 0;
@@ -32,6 +34,7 @@ const Header = () => {
     setUser(null)
     localStorage.removeItem('user')
     setIsDropdownOpen(false)
+    showSuccess('Вы успешно вышли из аккаунта')
   }
 
   const truncateName = (name) => {

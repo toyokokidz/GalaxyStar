@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ThemeProvider } from '../context/ThemeContext';
+import { ToastProvider } from '../context/ToastContext';
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import { CartProvider } from '../context/CartContext.jsx'
@@ -34,22 +35,24 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ThemeProvider>
-      <CartProvider>
-        <Header />
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={router.route}
-            initial="initial"
-            animate="in"
-            exit="out"
-            variants={pageVariants}
-            transition={pageTransition}
-          >
-            <Component {...pageProps} />
-          </motion.div>
-        </AnimatePresence>
-        <Footer />
-      </CartProvider>
+      <ToastProvider>
+        <CartProvider>
+          <Header />
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={router.route}
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <Component {...pageProps} />
+            </motion.div>
+          </AnimatePresence>
+          <Footer />
+        </CartProvider>
+      </ToastProvider>
     </ThemeProvider>
   );
 }
