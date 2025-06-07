@@ -41,8 +41,8 @@ const AccessoryPage = () => {
   return (
       <div className={styles.productPageContainer}>
         <div className={styles.breadcrumbs}>
-          <Link href="/">Home/</Link>
-          <Link href="/accessoires">Accessories/</Link>
+          <Link href="/">Home</Link>
+          <Link href="/accessoires">Accessories</Link>
           <span>{accessory.name}</span>
         </div>
 
