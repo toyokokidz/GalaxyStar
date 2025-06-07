@@ -1,0 +1,65 @@
+@keyframes flyToCart {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(
+      calc((var(--end-x) - var(--start-x)) * 0.5),
+      calc((var(--end-y) - var(--start-y)) * 0.5 - 100px)
+    ) scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(
+      calc(var(--end-x) - var(--start-x)),
+      calc(var(--end-y) - var(--start-y))
+    ) scale(0.3);
+    opacity: 0;
+  }
+}
+
+.animationContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.flyingItem {
+  position: absolute;
+  left: var(--start-x);
+  top: var(--start-y);
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%);
+  animation: flyToCart 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  
+  svg {
+    width: 30px;
+    height: 30px;
+    color: white;
+  }
+} 

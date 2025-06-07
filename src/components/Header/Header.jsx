@@ -2,13 +2,16 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import styles from './Header.module.scss'
 import AuthModal from '../Auth/AuthModal'
+import ThemeToggle from '../ThemeToggle/ThemeToggle'
 import { useCart } from '../../context/CartContext.jsx'
+import { useToast } from '../../context/ToastContext'
 
 const Header = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [user, setUser] = useState(null)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const { cartItems } = useCart()
+  const { showSuccess } = useToast()
 
   const getCartCount = () => {
     return cartItems ? cartItems.reduce((total, item) => total + (item.quantity || 1), 0) : 0;
@@ -31,6 +34,7 @@ const Header = () => {
     setUser(null)
     localStorage.removeItem('user')
     setIsDropdownOpen(false)
+    showSuccess('Вы успешно вышли из аккаунта')
   }
 
   const truncateName = (name) => {
@@ -53,7 +57,8 @@ const Header = () => {
           </div>
           <div className={styles.right}>
             <Link href="/support" className={styles.link}>Support</Link>
-            <Link href="/cart" className={styles.link}>Cart ({getCartCount()})</Link>
+            <Link href="/cart" className={styles.link} data-cart-button>Cart ({getCartCount()})</Link>
+            <ThemeToggle />
             {user ? (
               <div className={styles.userMenu}>
                 <button 

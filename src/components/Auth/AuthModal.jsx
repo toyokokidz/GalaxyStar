@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useToast } from '../../context/ToastContext'
 import styles from './AuthModal.module.scss'
 
 const AuthModal = ({ isOpen, onClose, onAuthSuccess }) => {
@@ -15,6 +16,7 @@ const AuthModal = ({ isOpen, onClose, onAuthSuccess }) => {
     auth: ''
   })
   const [isLoading, setIsLoading] = useState(false)
+  const { showSuccess, showError } = useToast()
 
   console.log('Rendering AuthModal:', { 
     isLogin, 
@@ -81,11 +83,13 @@ const AuthModal = ({ isOpen, onClose, onAuthSuccess }) => {
       // Изменяем логику проверки ответа
       if (response.ok && data.user) {
         // Успешная аутентификация
+        showSuccess(isLogin ? 'Добро пожаловать!' : 'Аккаунт успешно создан!')
         onAuthSuccess(data.user)
         onClose()
       } else {
         // Обработка ошибки
         const errorMessage = data.error || 'Authentication failed'
+        showError(errorMessage)
         setErrors(prev => ({
           ...prev,
           auth: errorMessage
@@ -94,6 +98,7 @@ const AuthModal = ({ isOpen, onClose, onAuthSuccess }) => {
 
     } catch (error) {
       console.error('Auth error:', error)
+      showError('Произошла ошибка при аутентификации')
       setErrors(prev => ({
         ...prev,
         auth: 'An error occurred during authentication'

@@ -1,29 +1,69 @@
-.card {
-  background: #1a1a1a;
-  border-radius: 8px;
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.productCard {
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
   overflow: hidden;
-  transition: transform 0.3s;
-
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
   &:hover {
-    transform: translateY(-5px);
-
-    .overlay {
-      opacity: 1;
-    }
+    box-shadow: var(--card-hover-shadow);
+    border-color: var(--accent-primary);
   }
 }
 
 .imageContainer {
   position: relative;
-  padding-top: 100%;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  background: var(--bg-tertiary);
+}
 
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
+.imageSkeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--bg-tertiary) 0%,
+    var(--border-light) 50%,
+    var(--bg-tertiary) 100%
+  );
+  background-size: 200% 100%;
+  
+  .skeletonShimmer {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%
+    );
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+  
+  .productCard:hover & {
+    transform: scale(1.05);
   }
 }
 
@@ -33,61 +73,161 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s;
+  backdrop-filter: blur(2px);
 }
 
-.quickView {
-  padding: 0.8rem 1.5rem;
-  background: white;
-  color: black;
+.quickViewBtn {
+  background: rgba(255, 255, 255, 0.9);
   border: none;
-  border-radius: 4px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: background 0.3s;
-
-  &:hover {
-    background: #f0f0f0;
+  transition: all 0.2s ease;
+  
+  svg {
+    width: 24px;
+    height: 24px;
+    color: var(--text-primary);
   }
+  
+  &:hover {
+    background: white;
+    transform: scale(1.1);
+  }
+}
+
+.discountBadge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
 }
 
 .content {
-  padding: 1.5rem;
+  padding: 20px;
+}
 
-  h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+.productName {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  line-height: 1.3;
+  
+  // Ограничиваем до 2 строк
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.productDescription {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  line-height: 1.4;
+  
+  // Ограничиваем до 2 строк
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.priceRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.priceContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.originalPrice {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  text-decoration: line-through;
+}
+
+.currentPrice {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent-primary);
+}
+
+.addToCartBtn {
+  background: var(--accent-primary);
+  border: none;
+  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    color: white;
+  }
+  
+  &:hover {
+    background: var(--accent-hover);
+    box-shadow: 0 4px 12px rgba(74, 158, 255, 0.4);
+  }
+  
+  &:active {
+    transform: scale(0.95);
   }
 }
 
-.category {
-  color: #999;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-}
-
-.price {
-  font-size: 1.3rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.addToCart {
-  width: 100%;
-  padding: 0.8rem;
-  background: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s;
-
-  &:hover {
-    background: darken(#ff0000, 10%);
+// Адаптивность
+@media (max-width: 768px) {
+  .imageContainer {
+    height: 250px;
+  }
+  
+  .content {
+    padding: 16px;
+  }
+  
+  .productName {
+    font-size: 16px;
+  }
+  
+  .currentPrice {
+    font-size: 18px;
+  }
+  
+  .addToCartBtn {
+    width: 40px;
+    height: 40px;
+    
+    svg {
+      width: 18px;
+      height: 18px;
+    }
   }
 } 
