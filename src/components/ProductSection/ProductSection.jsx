@@ -1,9 +1,12 @@
 import { useEffect, useRef } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import styles from '../../components/Accessoires/Accessoires.module.scss';
 
 const ProductSection = ({ accessory }) => {
     const flexLinesRef = useRef([]);
 
+    // Intersection Observer для анимаций
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -27,7 +30,8 @@ const ProductSection = ({ accessory }) => {
         };
     }, []);
 
-    const renderProductDetails = () => {
+    // Рендер деталей аксессуара
+    const renderAccessoryDetails = () => {
         switch (accessory.id) {
             case 1:
                 return (
@@ -40,7 +44,6 @@ const ProductSection = ({ accessory }) => {
                                 This product combines powerful GaN technology with a fun, transformable design, ideal for charging multiple devices at once.
                             </p>
                         </div>
-
                         <div className={styles.flexContainer}>
                             <div className={styles.flexLine} ref={(el) => (flexLinesRef.current[0] = el)}>
                                 <div className={styles.flexItem}>
@@ -55,7 +58,6 @@ const ProductSection = ({ accessory }) => {
                                     />
                                 </div>
                             </div>
-
                             <div className={styles.flexLine} ref={(el) => (flexLinesRef.current[1] = el)}>
                                 <div className={styles.flexItem}>
                                     <img
@@ -72,7 +74,6 @@ const ProductSection = ({ accessory }) => {
                         </div>
                     </>
                 );
-
             case 2:
                 return (
                     <>
@@ -84,7 +85,6 @@ const ProductSection = ({ accessory }) => {
                                 This product combines powerful GaN technology with a fun, transformable design, ideal for charging multiple devices at once.
                             </p>
                         </div>
-
                         <div className={styles.flexContainer}>
                             <div className={styles.flexLine} ref={(el) => (flexLinesRef.current[0] = el)}>
                                 <div className={styles.flexItem}>
@@ -99,7 +99,6 @@ const ProductSection = ({ accessory }) => {
                                     />
                                 </div>
                             </div>
-
                             <div className={styles.flexLine} ref={(el) => (flexLinesRef.current[1] = el)}>
                                 <div className={styles.flexItem}>
                                     <img
@@ -129,7 +128,6 @@ const ProductSection = ({ accessory }) => {
                         </div>
                     </>
                 );
-
             case 4:
                 return (
                     <>
@@ -138,7 +136,6 @@ const ProductSection = ({ accessory }) => {
                             <h2>Sound Meets Sci-Fi</h2>
                             <p className={styles.headingName}>The Mars Pro is more than just the perfect speaker for audiophiles—its futuristic mecha design catches the eye while the speaker core impresses your ear. Three foldable legs lift the tough zinc alloy shell into the air for pristine sound without any distortion from surface contact.</p>
                         </div>
-
                         <div className={styles.flexContainer}>
                             <div className={styles.flexLine} ref={(el) => (flexLinesRef.current[0] = el)}>
                                 <div className={styles.flexItem}>
@@ -153,7 +150,6 @@ const ProductSection = ({ accessory }) => {
                                     />
                                 </div>
                             </div>
-
                             <div className={styles.flexLine} ref={(el) => (flexLinesRef.current[1] = el)}>
                                 <div className={styles.flexItem}>
                                     <img
@@ -183,7 +179,6 @@ const ProductSection = ({ accessory }) => {
                         </div>
                     </>
                 );
-
             case 7:
                 return (
                     <div className={styles.flexContainer}>
@@ -200,7 +195,6 @@ const ProductSection = ({ accessory }) => {
                                 />
                             </div>
                         </div>
-
                         <div className={styles.flexLine} ref={(el) => (flexLinesRef.current[1] = el)}>
                             <div className={styles.flexItem}>
                                 <img
@@ -229,15 +223,44 @@ const ProductSection = ({ accessory }) => {
                         </div>
                     </div>
                 );
-
             default:
                 return null;
         }
     };
 
+    // Функция для получения случайных аксессуаров
+    const getRandomProducts = (data, excludeId, count = 3) => {
+        if (!Array.isArray(data)) return [];
+        const filtered = data.filter(item => item.id !== excludeId);
+        const shuffled = [...filtered].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
+    };
+
+    const accessoryData = require('../../data/accessoires.json') || [];
+    const randomAccessory = getRandomProducts(accessoryData, accessory?.id);
+
     return (
         <div className={styles.container2}>
-            {renderProductDetails()}
+            {renderAccessoryDetails()}
+
+            <div className={styles.recommendations}>
+                <h2>Explore More</h2>
+                <div className={styles.productGrid}>
+                    {randomAccessory?.map((item) => (
+                        <Link href={`/accessory/${item.id}`} key={item.id} className={styles.productCard}>
+                            <Image 
+                                src={item.image} 
+                                alt={item.name} 
+                                width={200} 
+                                height={200}
+                                unoptimized
+                            />
+                            <h3>{item.name}</h3>
+                            <p>{item.price}</p>
+                        </Link>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };
