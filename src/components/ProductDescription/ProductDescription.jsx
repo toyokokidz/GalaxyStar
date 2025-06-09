@@ -1,11 +1,26 @@
-import { useState } from 'react';
-import styles from '../../components/Accessoires/Accessoires.module.scss';
+import { useState, useRef, useEffect } from 'react';
+import styles from './ProductDescription.module.scss';
+
 
 export default function ProductDescription({
                                                product,
                                                showDescription = true,
-                                       }) {
-    const [isDescriptionVisible, setDescriptionVisible] = useState(false);
+                                           }) {
+    const [isExpanded, setIsExpanded] = useState(false);
+    const [needsExpand, setNeedsExpand] = useState(false);
+    const descriptionRef = useRef(null);
+
+    useEffect(() => {
+        if (descriptionRef.current) {
+            const element = descriptionRef.current;
+            const contentOverflows = element.scrollHeight > 326;
+            setNeedsExpand(contentOverflows);
+
+            if (contentOverflows) {
+                element.style.maxHeight = '288px';
+            }
+        }
+    }, [product.description]);
 
     const renderDescription = () => {
         if (!product.description) return null;
@@ -34,16 +49,29 @@ export default function ProductDescription({
 
     return (
         <div className={styles.productActions}>
-
             {showDescription && product.description && (
                 <div className={styles.descriptionSection}>
-                    <button
-                        onClick={() => setDescriptionVisible(!isDescriptionVisible)}
-                        className={styles.toggleButton}
+                    <div
+                        ref={descriptionRef}
+                        className={`${styles.descriptionContainer} ${isExpanded ? styles.expanded : ''}`}
+                        style={{
+                            maxHeight: isExpanded ? 'none' : (needsExpand ? '288px' : 'none'),
+                            WebkitMaskImage: !isExpanded && needsExpand
+                                ? 'linear-gradient(to bottom, black calc(100% - 50px), transparent)'
+                                : 'none',
+                        }}
                     >
-                        {isDescriptionVisible ? 'Hide Description' : 'Show Description'}
-                    </button>
-                    {isDescriptionVisible && renderDescription()}
+                        {renderDescription()}
+                    </div>
+
+                    {needsExpand && (
+                        <button
+                            onClick={() => setIsExpanded(!isExpanded)}
+                            className={styles.expandButton}
+                        >
+                            {isExpanded ? 'Hide' : 'Expand'}
+                        </button>
+                    )}
                 </div>
             )}
         </div>

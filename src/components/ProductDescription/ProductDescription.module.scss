@@ -1,0 +1,71 @@
+@use '../../styles/variables' as *;
+
+.descriptionSection {
+  margin-top: 1.25rem;
+  position: relative;
+}
+
+.descriptionContainer {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  position: relative;
+  max-height: 288px;
+
+  &.expanded {
+    max-height: none;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+}
+
+.expandButton {
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  padding: 8px 0;
+  background: none;
+  border: none;
+  color: $color-white;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 5px;
+  position: relative;
+  background: rgba(255,255,255,0.1);
+
+  &:hover {
+    background: rgba(255,255,255,0.4);
+  }
+}
+
+.descriptionContent {
+  font-size: $font-size-base;
+  color: $color-white;
+
+  .noDescription {
+    font-style: italic;
+    color: $color-white;
+  }
+
+  .featureHeader {
+    font-size: $font-size-lg;
+    margin-bottom: 0.9375rem;
+    color: $color-white;
+  }
+
+  .featureItem {
+    display: flex;
+    margin-bottom: 0.625rem;
+
+    .featureName {
+      font-weight: bold;
+      margin-right: 0.3125rem;
+    }
+    .featureDetail {
+      color: $color-white;
+    }
+  }
+
+  .descriptionText {
+    margin-bottom: 0.625rem;
+  }
+}

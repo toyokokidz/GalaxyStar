@@ -5,6 +5,7 @@ import Link from 'next/link';
 import mouseData from '../../data/mouse.json';
 import styles from '../../components/Accessoires/Accessoires.module.scss';
 import ProductActions from '../../components/ProductActions/ProductActions';
+import ProductSection from '../../components/ProductSection/ProductSection';
 
 const MousePage = () => {
     const router = useRouter();
@@ -40,8 +41,8 @@ const MousePage = () => {
     return (
         <div className={styles.productPageContainer}>
             <div className={styles.breadcrumbs}>
-                <Link href="/">Home/</Link>
-                <Link href="/mouse">Mouse/</Link>
+                <Link href="/">Home</Link>
+                <Link href="/mouse">Mouse</Link>
                 <span>{mouse.name}</span>
             </div>
 
@@ -54,6 +55,7 @@ const MousePage = () => {
                             width={600}
                             height={600}
                             priority
+                            style={{ borderRadius: '15px' }}
                         />
                     </div>
                 </div>
@@ -69,6 +71,8 @@ const MousePage = () => {
                     />
                 </div>
             </div>
+
+            {mouse.productDetails && <ProductSection product={mouse} />}
         </div>
     );
 };

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useCart } from '../../context/CartContext';
-import styles from '../../components/Accessoires/Accessoires.module.scss';
+import styles from './ProductActions.module.scss';
 import ProductDescription from "../ProductDescription/ProductDescription";
 
 export default function ProductActions({
@@ -13,9 +13,11 @@ export default function ProductActions({
     const { addToCart, cartItems } = useCart();
 
     const isInCart = cartItems.some(item => item.id === product.id);
+    const priceValue = parseFloat((product.price_sale || product.price).replace('$', ''));
+    const isOutOfStock = priceValue === 0;
 
-    // Обработчик добавления в корзину
     const handleAddToCart = () => {
+        if (isOutOfStock) return;
         addToCart({
             id: product.id,
             name: product.name,
@@ -43,7 +45,7 @@ export default function ProductActions({
                 )}
             </div>
 
-            {showQuantity && (
+            {showQuantity && !isOutOfStock && (
                 <div className={styles.quantitySection}>
                     <label>Quantity:</label>
                     <div className={styles.quantitySelector}>
@@ -65,11 +67,17 @@ export default function ProductActions({
             )}
 
             <button
-                className={`${styles.addToCartButton} ${isInCart ? styles.inCart : ''}`}
+                className={`${styles.addToCartButton} ${
+                    isInCart ? styles.inCart : ''
+                } ${isOutOfStock ? styles.outOfStock : ''}`}
                 onClick={handleAddToCart}
-                disabled={isInCart}
+                disabled={isInCart || isOutOfStock}
             >
-                {isInCart ? '✓ Added to Cart' : 'Add to Cart'}
+                {isOutOfStock
+                    ? 'Out of stock'
+                    : isInCart
+                        ? '✓ Added to Cart'
+                        : 'Add to Cart'}
             </button>
 
             <ProductDescription

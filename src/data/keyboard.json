@@ -81,6 +81,30 @@
           "value": "Keyboard, Receiver, USB Cable, Puller, Cleaning Brush, 4 Extra Switches, Manual, Cleaning Cloth"
         }
       ]
+    },
+    "productDetails": {
+      "heading": {
+        "subtitle": "Mercury K1 Pro - Galaxy Black",
+        "title": "Feel the Aluminum Flow",
+        "description": "Premium mechanical keyboard with futuristic design and advanced features"
+      },
+      "features": [
+        {
+          "title": "Design From Outside",
+          "description": "The Mercury K1 Pro is forged from a strong yet lightweight aluminum alloy for the perfect balance of durability and portability.",
+          "image": "/images/galaxy-keyboard-pro1.jpg"
+        },
+        {
+          "title": "Merge with the Machine",
+          "description": "Metal flows up and around the keys, wrapping them in quicksilver branches that flicker and shift against a brilliant aura of power.",
+          "image": "/images/galaxy-keyboard-pro2.webp"
+        },
+        {
+          "title": "Advanced Switches",
+          "description": "Custom mechanical switches with 50 million keystroke lifespan and ultra-fast response time.",
+          "image": "/images/galaxy-keyboard-pro3.webp"
+        }
+      ]
     }
   },
   {
