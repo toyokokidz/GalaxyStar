@@ -14,15 +14,17 @@ export default function Dashboard() {
 
   return (
     <div className={styles.dashboard}>
-      <motion.div 
+      <motion.div
         className={styles.container}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
         transition={{ duration: 0.8 }}
       >
         <header className={styles.header}>
-          <h1 className={styles.title}>Analytics Dashboard</h1>
-          <p className={styles.subtitle}>Real-time business insights</p>
+          <div>
+            <h1 className={styles.title}>Analytics Dashboard</h1>
+            <p className={styles.subtitle}>Real-time business insights</p>
+          </div>
         </header>
 
         <div className={styles.grid}>

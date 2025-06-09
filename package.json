@@ -19,6 +19,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-router-dom": "^7.3.0",
+    "recharts": "^2.15.3",
     "sass": "^1.32.8",
     "swiper": "^11.2.5"
   },

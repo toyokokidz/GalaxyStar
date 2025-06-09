@@ -45,8 +45,10 @@ const StatCard = ({ title, value, change, icon, delay }) => {
           {change >= 0 ? '+' : ''}{change}%
         </span>
       </div>
-      <div className={styles.value}>{displayValue.toLocaleString()}</div>
-      <div className={styles.title}>{title}</div>
+      <div className={styles.cardContent}>
+        <div className={styles.value}>{displayValue.toLocaleString()}</div>
+        <div className={styles.title}>{title}</div>
+      </div>
     </motion.div>
   );
 };

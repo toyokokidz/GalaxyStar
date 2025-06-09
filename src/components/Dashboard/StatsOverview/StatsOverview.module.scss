@@ -7,6 +7,9 @@
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  height: 520px;
 }
 
 .sectionTitle {
@@ -21,6 +24,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  flex: 1;
+  grid-template-rows: 1fr 1fr;
 }
 
 .statCard {
@@ -33,6 +38,10 @@
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;
 
   &::before {
     content: '';
@@ -60,8 +69,8 @@
 .cardHeader {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+  align-items: flex-start;
+  margin-bottom: auto;
 }
 
 .icon {
@@ -100,6 +109,13 @@
   }
 }
 
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 1;
+}
+
 .value {
   font-size: 2rem;
   font-weight: 700;
@@ -117,6 +133,7 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  margin-top: auto;
 }
 
 @media (max-width: 768px) {

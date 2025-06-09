@@ -50,10 +50,10 @@ export default function Custom404() {
           <span className={styles.four}>4</span>
         </div>
 
-        <h1 className={styles.title}>Упс! Страница потерялась в космосе</h1>
+        <h1 className={styles.title}>Oops! Page lost in space</h1>
         <p className={styles.description}>
-          Похоже, эта страница улетела в другую галактику. 
-          Но не волнуйтесь, мы поможем вам вернуться домой!
+          Looks like this page flew off to another galaxy. 
+          But don't worry, we'll help you get back home!
         </p>
 
         <div className={styles.actions}>
@@ -62,7 +62,7 @@ export default function Custom404() {
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               <polyline points="9 22 9 12 15 12 15 22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            Вернуться на главную
+            Back to Home
           </Link>
           
           <button 
@@ -72,17 +72,17 @@ export default function Custom404() {
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            Назад
+            Go Back
           </button>
         </div>
 
         <div className={styles.searchSuggestion}>
-          <p>Или попробуйте найти то, что искали:</p>
+          <p>Or try to find what you were looking for:</p>
           <div className={styles.quickLinks}>
-            <Link href="/keyboard">Клавиатуры</Link>
-            <Link href="/mouse">Мыши</Link>
-            <Link href="/accessoires">Аксессуары</Link>
-            <Link href="/support">Поддержка</Link>
+            <Link href="/keyboard">Keyboards</Link>
+            <Link href="/mouse">Mice</Link>
+            <Link href="/accessoires">Accessories</Link>
+            <Link href="/support">Support</Link>
           </div>
         </div>
       </div>
