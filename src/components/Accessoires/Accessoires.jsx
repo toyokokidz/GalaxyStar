@@ -1,4 +1,3 @@
-// Accessoires.jsx
 import { useState } from 'react';
 import styles from './Accessoires.module.scss';
 import accessoiresProducts from '../../data/accessoires.json';
